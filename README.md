@@ -2,7 +2,7 @@
 
 This Repo contains all my Nano Degree Projects in named Folders.
 
-<h1 aligh="center"> Project One Sandwich Club</h1>
+<h2 aligh="center"> Project One Sandwich Club</h2>
 
 In this project, you will complete the Sandwich Club app to show the details of each sandwich once it is selected.
 
