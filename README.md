@@ -1,6 +1,6 @@
-# NanoDegreeProjects
+<h1 align="center">Nano Degree Projects </h1>
 
-All my Udacity Android Nano Degree Projects.
+This Repo contains all my Nano Degree Projects in named Folders.
 
 ## Project One Sandwich Club
 
