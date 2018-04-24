@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * this is my final project for submission
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
