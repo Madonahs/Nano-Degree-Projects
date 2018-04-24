@@ -13,7 +13,7 @@ Building a layout and populating its fields from data received as JSON is a comm
 Through this project, you will:
 
 **Learn how to submit projects for review**
-Practice JSON parsing to a model object
+**Practice JSON parsing to a model object**
 Design an activity layout
 Populate all fields in the layout accordingly
 
