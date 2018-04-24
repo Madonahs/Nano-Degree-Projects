@@ -2,7 +2,7 @@
 
 This Repo contains all my Nano Degree Projects in named Folders.
 
-## Project One Sandwich Club
+<h1 aligh="center"> Project One Sandwich Club</h1>
 
 In this project, you will complete the Sandwich Club app to show the details of each sandwich once it is selected.
 
@@ -15,9 +15,9 @@ Through this project, you will:
 * **Learn how to submit projects for review** 
 * **Practice JSON parsing to a model object** 
 * **Design an activity layout**
-Populate all fields in the layout accordingly
+* **Populate all fields in the layout accordingly**
 
-## Project Two Popular Movie Stage 1.
+# Project Two Popular Movie Stage 1.
 
 ### Project Overview
 Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. In this project, you’ll build an app to allow users to discover the most popular movies playing. We will split the development of this app in two stages. First, let's talk about stage 1.
