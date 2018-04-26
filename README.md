@@ -2,9 +2,14 @@
 
 This Repo contains all my Nano Degree Projects in named Folders.
 
-<h2 aligh="center"> Project One Sandwich Club</h2>
+# Project Overview
+![projects](https://user-images.githubusercontent.com/11560987/39330794-5bdd1b4c-4968-11e8-9271-631b147ec403.PNG)
+
+
+## Project One Sandwich Club
 
 In this project, you will complete the Sandwich Club app to show the details of each sandwich once it is selected.
+
 
 ### Why this Project
 Building a layout and populating its fields from data received as JSON is a common task for Android Developers. Although JSON parsing is usually done using libraries, writing the JSON parsing for this project will help you to better understand how it is processed.
