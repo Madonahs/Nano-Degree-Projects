@@ -3,6 +3,7 @@
     package="com.udacity.sandwichclub">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Access to internet included!-->
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity" />
+        <activity
+            android:name=".DetailActivity" />
     </application>
 
 </manifest>

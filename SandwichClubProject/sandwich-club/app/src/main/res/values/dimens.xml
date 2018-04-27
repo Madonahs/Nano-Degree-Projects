@@ -2,4 +2,8 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="image">8dp</dimen>
+    <dimen name="des">99dp</dimen>
+    <dimen name="textview">8dp</dimen>
+    <dimen name="padtextview">5dp</dimen>
 </resources>
