@@ -1,7 +1,9 @@
-package com.madonasyombua.myapplication;
+package com.madonasyombua.myapplication.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.madonasyombua.myapplication.R;
 
 /**
  * @author madon
