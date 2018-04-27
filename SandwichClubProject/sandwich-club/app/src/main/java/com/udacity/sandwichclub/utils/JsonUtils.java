@@ -10,6 +10,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author madon
+ */
 public class JsonUtils {
 
     private static final String TAG = JsonUtils.class.getName();
