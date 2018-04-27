@@ -1,4 +1,8 @@
 package com.madonasyombua.myapplication.Interfaces;
 
-public class MovieTask {
+/**
+ * @author madon
+  */
+
+interface OnTaskCompleted {
 }
