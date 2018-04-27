@@ -19,7 +19,6 @@ public class DetailActivity extends AppCompatActivity {
     private static final String TAG = DetailActivity.class.getName();
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
-    //COMPLETED (5) declare all the textViews and set variable, add the Imageview and assign them to their views
     private  TextView getTvDescription, getTvOrigin, getTvAsKnownAs , getTvIngredient;
     private ImageView ingredientsIv;
 
@@ -80,6 +79,7 @@ public class DetailActivity extends AppCompatActivity {
     /**
      * COMPLETED (8) DetailActivity shows all Sandwich details correctly
      * COMPLETED (11) populate the UI by setting text to the correct textview using Sandwich class
+     * COMPLETED (5) declare all the textViews and set variable, add the Imageview and assign them to their views
      *
      */
     private void populateUI() {

@@ -20,7 +20,6 @@ public class JsonUtils {
      * @throws JSONException
      */
     public static Sandwich parseSandwichJson(String json) throws JSONException {
-
         //COMPLETED 6) Ensure JSON data is parsed correctly to a Sandwich object in JsonUtils
         //COMPLETED (7) JSON is parsed without using 3rd party libraries
         final String KEY_NAME = "name";
@@ -35,7 +34,6 @@ public class JsonUtils {
         JSONObject sandwichObject = new JSONObject(json);
         //get the name JSONObject
         JSONObject name = sandwichObject.getJSONObject(KEY_NAME);
-
 
         //get origin
         String origin = sandwichObject.getString(KEY_PLACE_OF_ORIGIN);
