@@ -1,7 +1,7 @@
 # Project Overview
 Welcome back to Popular Movies! In this second and final stage, you’ll add additional functionality to the app you built in Stage 1.
 
-You’ll add more information to your movie details view:
+### You’ll add more information to your movie details view:
 
 `You’ll allow users to view and play trailers ( either in the youtube app or a web browser).
 You’ll allow users to read reviews of a selected movie.
