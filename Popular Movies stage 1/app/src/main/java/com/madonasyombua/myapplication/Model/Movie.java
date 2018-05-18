@@ -16,7 +16,7 @@ public class Movie implements Parcelable{
     private static final String Date_TMDB = "yyyy-MM-dd";
 
     //Constructor
-    protected Movie() {
+    public Movie() {
     }
 
     /**
@@ -138,6 +138,8 @@ public class Movie implements Parcelable{
      */
     public void setMovieRealease(String movie_Release_Date){
         //we will check to make sure the data is not null
+
+
         if(!movie_Release_Date.equals("null")){
             movieRelease = movie_Release_Date;
         }

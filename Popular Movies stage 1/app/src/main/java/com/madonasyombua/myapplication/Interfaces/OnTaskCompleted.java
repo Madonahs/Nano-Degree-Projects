@@ -6,6 +6,6 @@ import com.madonasyombua.myapplication.Model.Movie;
  * @author madon
   */
 
-interface OnTaskCompleted {
+public interface OnTaskCompleted {
     void onFetchMovie(Movie [] movies);
 }
