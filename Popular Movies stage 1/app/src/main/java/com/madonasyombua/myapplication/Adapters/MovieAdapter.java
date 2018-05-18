@@ -92,8 +92,8 @@ public class MovieAdapter extends BaseAdapter {
         }
         Picasso.with(mContext)
                 .load(mMovies[position].getMoviePosterPath())
-                .resize(mContext.getResources().getInteger(R.integer.tmdb_poster_width),
-                mContext.getResources().getInteger(R.integer.tmdb_poster_height))//width and height as per guidelines
+                .resize((int) mContext.getResources().getDimension(R.dimen.tmdb_poster_width),
+                        (int) mContext.getResources().getDimension(R.dimen.tmdb_poster_height))//width and height as per guidelines
                 .error(R.drawable.alert_circle_outline)//when we get an error
                 .placeholder(R.drawable.loading)// as the image loads
                 .into(movieImageView);// the target
