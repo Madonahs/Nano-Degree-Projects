@@ -122,6 +122,14 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
     }
 
     /**
+     * Allow the user to tap on a movie poster and transition to a details screen with additional information such as:
+     * original title
+     * movie poster image thumbnail
+     * <p/>
+     * A plot synopsis (called overview in the api)
+     * user rating (called vote_average in the api)
+     * <p/>
+     * release date
      * This method gets the movies from the Json data
      * @param movieJson the json string to be used
      * @return a list of movie objects
@@ -151,7 +159,6 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
             // Object contains all tags we're looking for
             JSONObject movieInfo = resultsArray.getJSONObject(i);
 
-            // Store data in movie object
             movies[i].setMovieOriginalTitle(movieInfo.getString(TAG_ORIGINAL_TITLE));
             movies[i].setMoviePosterPath(movieInfo.getString(TAG_POSTER_PATH));
             movies[i].setMovieOverview(movieInfo.getString(TAG_OVERVIEW));
