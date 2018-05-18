@@ -32,6 +32,10 @@ public class Movie implements Parcelable{
 
     /**
      * This method returns the URL string where the poster will be loaded
+     * The base URL will look like: http://image.tmdb.org/t/p/.
+     * Then you will need a ‘size’, which will be one of the following: "w92", "w154", "w185", "w342", "w500", "w780", or "original". For most phones we recommend using “w185”.
+     * <p/>
+     * And finally the poster path returned by the query, in this case “/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg”
      *  <p/>
      * @return URL string
      */
