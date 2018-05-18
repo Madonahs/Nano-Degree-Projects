@@ -91,7 +91,7 @@ public class Movie implements Parcelable{
      * <p/>
      * @return the Vote average
      */
-    private String getVote(){
+    public String getVoteAverage(){
 
         return String.valueOf(getMovieVote()) + "/10";
 

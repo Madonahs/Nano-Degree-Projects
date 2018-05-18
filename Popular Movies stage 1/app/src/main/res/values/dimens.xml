@@ -3,4 +3,6 @@
 
     <dimen name="tmdb_poster_width">185</dimen>
     <dimen name="tmdb_poster_height">278</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="text_size">16sp</dimen>
 </resources>

@@ -178,8 +178,9 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
     private URL getMovieApi(String[] strings) throws MalformedURLException {
 
 
+
         String Sort_Parameter = "sort by";
-        String Api_Key = "api key";
+        String Api_Key = "api_key";
 
         Uri uri = Uri.parse(Base_Url).buildUpon()
                 .appendQueryParameter(Sort_Parameter,strings[0])

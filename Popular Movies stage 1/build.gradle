@@ -26,7 +26,14 @@ allprojects {
         jcenter()
     }
 }
-
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+    }
+}
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

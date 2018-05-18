@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
+<!-- completed Movies are displayed in the main layout via a grid of their corresponding movie poster thumbnails.-->
+<!--UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.-->
+   <GridView
+       android:id="@+id/grid_view"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:numColumns="auto_fit"
+       >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   </GridView>
 
 </android.support.constraint.ConstraintLayout>
