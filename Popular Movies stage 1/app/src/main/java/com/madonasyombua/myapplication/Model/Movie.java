@@ -173,6 +173,10 @@ public class Movie implements Parcelable{
         dest.writeValue(movieVote);
     }
 
+    /**
+     *
+     * @param in parcel read string
+     */
     private Movie(Parcel in){
         movieOriginalTitle = in.readString();
         moviePosterPath = in.readString();
