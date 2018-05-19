@@ -24,6 +24,9 @@
     <string name="no_date_found">No date found</string>
 
 
+    <string name="tmdb_sort_pop_desc">popularity.desc</string>
+    <!-- tmdb sort 'vote_average.desc' -->
+    <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
 
 
 </resources>

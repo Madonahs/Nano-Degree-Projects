@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@id/div_poster"
             app:layout_constraintLeft_toLeftOf="@id/div_poster"
             app:layout_constraintRight_toRightOf="@id/div_poster"
-            tools:text="@string/title"/>
+            tools:text="@string/brief"/>
 
         <TextView
             android:id="@+id/textview_overview"
@@ -111,25 +111,25 @@
         <TextView
             android:id="@+id/textview_release_date_title"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="23dp"
             android:layout_margin="@dimen/sixteen_dp"
             android:textSize="@dimen/text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/div_plot"
             tools:text="@string/date" />
+
         <TextView
             android:id="@+id/textview_release_date"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="30dp"
             android:layout_margin="@dimen/sixteen_dp"
+            android:layout_marginTop="12dp"
             android:textSize="@dimen/text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_release_date_title"
             tools:text="@string/released" />
-
-
 
     </android.support.constraint.ConstraintLayout>
 

@@ -92,7 +92,7 @@ public class MovieAdapter extends BaseAdapter {
         }
         Picasso.with(mContext)
                 .load(mMovies[position].getMoviePosterPath())
-                .resize(185,278)
+                .resize(278,350)
                 .error(R.drawable.alert_circle_outline)//when we get an error
                 .placeholder(R.drawable.loading)// as the image loads
                 .into(movieImageView);// the target

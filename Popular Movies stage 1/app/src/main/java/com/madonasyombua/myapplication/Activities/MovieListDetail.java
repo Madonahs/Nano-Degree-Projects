@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatRatingBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ public class MovieListDetail extends AppCompatActivity {
     TextView tvReleaseDate;
     @BindView(R.id.imageview_poster)
     ImageView imageViewPoster;
+    @BindView(R.id.textview_release_date_title)
+    TextView releaseDateTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,14 @@ public class MovieListDetail extends AppCompatActivity {
         Intent intent = getIntent();
         Movie movie = intent.getParcelableExtra(getString(R.string.movie_parcel));
 
+        float vote = (float) (movie.getMovieVote() / 2);
+        AppCompatRatingBar ratingBar = findViewById(R.id.rating);
+        ratingBar.setIsIndicator(true);
+        ratingBar.setStepSize(0.1f);
+        ratingBar.setRating(vote);
+
         originalTitle.setText(movie.getTitle());
+        releaseDateTitle.setText("Release Date");
 
         Picasso.with(this)
                 .load(movie.getMoviePosterPath())
@@ -72,7 +82,7 @@ public class MovieListDetail extends AppCompatActivity {
                 Log.e(TAG,String.valueOf(R.string.release_date_error),pe);
             }
         }else {
-            tvReleaseDate.setTypeface(null,Typeface.BOLD_ITALIC);
+
             releaseDate = getResources().getString(R.string.no_date_found);
 
         }

@@ -113,13 +113,15 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
 
             case R.id.sort_by_pop:
-                updateSharedPrefs(getString(R.string.sort_pop_dec));
+                updateSharedPrefs(getString(R.string.tmdb_sort_pop_desc));
+
                 getMovies(getSortedMethod());
                 return true;
 
 
             case R.id.sort_by_avg:
-                updateSharedPrefs(getString(R.string.sort_avg_dec));
+                updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
+
                 getMovies(getSortedMethod());
                 return true;
         }
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
 
 
 
