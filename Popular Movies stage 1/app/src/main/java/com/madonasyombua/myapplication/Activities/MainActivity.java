@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.PersistableBundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +17,14 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.madonasyombua.myapplication.Adapters.MovieAdapter;
+import com.madonasyombua.myapplication.BuildConfig;
 import com.madonasyombua.myapplication.Interfaces.OnTaskCompleted;
 import com.madonasyombua.myapplication.Model.Movie;
 import com.madonasyombua.myapplication.R;
 import com.madonasyombua.myapplication.Utils.MovieAsyncTask;
+import com.madonasyombua.myapplication.Utils.TopRatedMovies;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.grid_view)
     GridView mGridView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null){
             getMovies(getSortedMethod());
+        }else {
+
+            Parcelable[] parcelable = savedInstanceState.
+                    getParcelableArray(getString(R.string.movie_parcel));
+
+            if (parcelable != null) {
+                int numMovieObjects = parcelable.length;
+                Movie[] movies = new Movie[numMovieObjects];
+                for (int i = 0; i < numMovieObjects; i++) {
+                    movies[i] = (Movie) parcelable[i];
+                }
+                mGridView.setAdapter(new MovieAdapter(this, movies));
+            }
         }
     }
 
@@ -63,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
     private String getSortedMethod() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        return sharedPreferences.getString(getString(R.string.sort_method_key),getString(R.string.sort_pop_dec));
+        return  sharedPreferences.getString(getString(R.string.pref_sort_method_key),
+                getString(R.string.tmdb_sort_pop_desc));
     }
 
     /**
@@ -86,19 +106,10 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    /**
-     *
-     * @param sortMethod sorted method to be saved
-     */
-    private void updateSharedPrefs(String sortMethod) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.pref_sort_method_key), sortMethod);
-        editor.apply();
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
     }
@@ -111,17 +122,57 @@ public class MainActivity extends AppCompatActivity {
 
         int id = item.getItemId();
         switch (id){
+            // I decided to create this to bring the top rated movies. :) If you can suggest other better ways thank :)
+            //popular movies
+            case R.id.menu_sort_by_pop:
+                setTitle(R.string.app_name);
+                if(networkAvailable()) {
 
-            case R.id.sort_by_avg:
-                setTitle(R.string.sort_rating);
-                updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
-                getMovies(getSortedMethod());
+                    //Make sure you enter your key here
+                    final String apiKey = BuildConfig.my_api;
+
+                    OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
+                        @Override
+                        public void onFetchMovie(Movie[] movies) {
+                            mGridView.setAdapter(new MovieAdapter(getApplicationContext(), movies));
+                        }
+                    };
+
+                    MovieAsyncTask movieAsyncTask = new MovieAsyncTask(onTaskCompleted, apiKey);
+                    movieAsyncTask.execute(getSortedMethod());
+                }else {
+                    Toast.makeText(this,getString(R.string.connect),Toast.LENGTH_SHORT).show();
+                }
+                return true;
+
+            //top rated movies
+            case R.id.menu_sort_by_avg:
+                setTitle(R.string.top_rated);
+                if(networkAvailable()) {
+
+                    //Make sure you enter your key here
+                     final String apiKey = BuildConfig.my_api;
+
+                    OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
+                        @Override
+                        public void onFetchMovie(Movie[] movies) {
+                            mGridView.setAdapter(new MovieAdapter(getApplicationContext(), movies));
+                        }
+                    };
+
+                    TopRatedMovies movieAsyncTask = new TopRatedMovies(onTaskCompleted, apiKey);
+
+                    movieAsyncTask.execute(getSortedMethod());
+                }else {
+                    Toast.makeText(this,getString(R.string.connect),Toast.LENGTH_SHORT).show();
+                }
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
 
     }
+
 
     /**
      * When a user changes the sort criteria (“most popular and highest rated”)
@@ -154,9 +205,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private boolean networkAvailable() {
 
-            ConnectivityManager connectivityManager
-                    = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            activeNetworkInfo = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
+        }
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

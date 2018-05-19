@@ -1,20 +1,19 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Popular Movies</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error">Error</string>
     <string name="error_while_closing">An Error Occurred while closing</string>
-    <string name="sort_pop">Sort by Popularity</string>
-    <string name="sort_rating">Sort by rating</string>
-    <string name="movie_parcel">Parcel Movie</string>
+    <string name="sort_pop">Popular Movies</string>
+    <string name="sort_rating">Top Rated</string>
+    <string name="movie_parcel">PARCEL_MOVIE</string>
     <string name="connect">Connectivity Issues</string>
     <string name="sort_method_key">Sort Method Key</string>
-    <string name="sort_pop_dec">Sort Popularity</string>
-    <string name="pref_sort_method_key">Sort Method</string>
-    <string name="sort_avg_dec">Sort Average</string>
+    <string name="sort_pop_dec" >Sort Popularity</string>
+    <string name="sort_avg_dec" >Sort Average</string>
     <string name="todo">TODO</string>
-    <string name="title">After the death of his father, T\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T\'Challa\'s mettle as king — and as Black Panther -- gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
+    <string name="title">After the death of his father, T\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T\'Challa\'s mettle as king — and as Black Panther — gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
     <string name="date">Release Date</string>
     <string name="vote_average">4.0 / 5.0</string>
     <string name="released">February 16, 2018</string>
@@ -22,9 +21,14 @@
     <string name="votes">1000 votes</string>
     <string name="release_date_error">Error while loading Date</string>
     <string name="no_date_found">No date found</string>
-
+    <string name="my_api">123testinggitignore</string>
+    <!-- include your api here name my_api-->
     <string name="tmdb_sort_pop_desc">popularity.desc</string>
     <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
-
+    <string name="pref_sort_method_key">SORT_METHOD</string>
+    <string name="pref_sort_vote_avg_desc_key">SORT_VOTE_AVERAGE_DESC</string>
+    <string name="pref_sort_pop_desc_key">SORT_POPULARITY_DESC</string>
+    <string name="sort_popular">PopularMovies</string>
+    <string name="top_rated">Top Rated Movies</string>
 
 </resources>

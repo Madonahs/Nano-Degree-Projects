@@ -1,7 +1,8 @@
 package com.madonasyombua.myapplication.Utils;
 
+
+
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -21,23 +22,20 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * @author madon
- */
-public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
+public class TopRatedMovies extends AsyncTask<String,Void,Movie[]> {
 
-    private final String TAG = MovieAsyncTask.class.getName();
+    private final String TAG = TopRatedMovies.class.getName();
 
     /**
      * The Api key should be private and never to be shared.
-     * To fetch popular movies, you will use the API from themoviedb.org.
+     * To fetch popular movies, you will use the API from the movie db.org.
      * <p/>
      * If you don’t already have an account, you will need to create
      * one in order to request an API Key.
      */
-    private String my_api_key;
+    private final String my_api_key;
 
-    private OnTaskCompleted onTaskCompleted;
+    private final OnTaskCompleted onTaskCompleted;
 
     private String movieJson = null;
 
@@ -48,7 +46,7 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
      * @param api_key this is the TMDB Api Key
      */
 
-    public MovieAsyncTask(OnTaskCompleted taskCompleted, String api_key){
+    public TopRatedMovies(OnTaskCompleted taskCompleted, String api_key){
         super();
         onTaskCompleted = taskCompleted;
         my_api_key = api_key;
@@ -133,7 +131,7 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
      * This method gets the movies from the Json data
      * @param movieJson the json string to be used
      * @return a list of movie objects
-     * @throws JSONException
+     * @throws JSONException jsonException
      */
     private Movie[] getMovieFromJson(String movieJson) throws JSONException{
 
@@ -173,13 +171,13 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
      * I will create a method getMovieApi to help me access the api
      * @param strings to be used in the call
      * @return the Url(uri. to string)
-     * @throws MalformedURLException
+     * @throws MalformedURLException  MalformedURLException
      */
     private URL getMovieApi(String[] strings) throws MalformedURLException {
 
 
-        final String BASE_URL = "http://api.themoviedb.org/3/discover/movie?";
-       //add baseURL
+
+        final String BASE_URL = "http://api.themoviedb.org/3/movie/top_rated?api_key=";
         String Sort_Parameter = "sort by";
         String Api_Key = "api_key";
 
@@ -203,6 +201,6 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
 
         onTaskCompleted.onFetchMovie(movies);
     }
+
+
 }
-
-
