@@ -179,10 +179,11 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
 
 
 
+
         String Sort_Parameter = "sort by";
         String Api_Key = "api_key";
 
-        Uri uri = Uri.parse(Base_Url).buildUpon()
+        Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(Sort_Parameter,strings[0])
                 .appendQueryParameter(Api_Key,my_api_key)
                 .build();

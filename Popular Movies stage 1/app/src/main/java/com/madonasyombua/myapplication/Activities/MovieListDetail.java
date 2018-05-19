@@ -72,6 +72,7 @@ public class MovieListDetail extends AppCompatActivity {
                 Log.e(TAG,String.valueOf(R.string.release_date_error),pe);
             }
         }else {
+            tvReleaseDate.setTypeface(null,Typeface.BOLD_ITALIC);
             releaseDate = getResources().getString(R.string.no_date_found);
 
         }
