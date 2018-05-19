@@ -112,16 +112,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
 
-            case R.id.sort_by_pop:
-                updateSharedPrefs(getString(R.string.tmdb_sort_pop_desc));
-
-                getMovies(getSortedMethod());
-                return true;
-
-
             case R.id.sort_by_avg:
+                setTitle(R.string.sort_rating);
                 updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
-
                 getMovies(getSortedMethod());
                 return true;
         }

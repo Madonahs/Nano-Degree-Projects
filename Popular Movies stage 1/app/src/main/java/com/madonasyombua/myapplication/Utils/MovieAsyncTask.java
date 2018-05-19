@@ -179,7 +179,7 @@ public class MovieAsyncTask  extends AsyncTask<String,Void,Movie[]>{
 
 
 
-
+       //add baseURL
         String Sort_Parameter = "sort by";
         String Api_Key = "api_key";
 

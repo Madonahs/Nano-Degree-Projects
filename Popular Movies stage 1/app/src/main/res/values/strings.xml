@@ -14,7 +14,7 @@
     <string name="pref_sort_method_key">Sort Method</string>
     <string name="sort_avg_dec">Sort Average</string>
     <string name="todo">TODO</string>
-    <string name="title">After the death of his father, T\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T'Challa's mettle as king — and as Black Panther -- gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
+    <string name="title">After the death of his father, T\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T\'Challa\'s mettle as king — and as Black Panther -- gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
     <string name="date">Release Date</string>
     <string name="vote_average">4.0 / 5.0</string>
     <string name="released">February 16, 2018</string>
@@ -23,9 +23,7 @@
     <string name="release_date_error">Error while loading Date</string>
     <string name="no_date_found">No date found</string>
 
-
     <string name="tmdb_sort_pop_desc">popularity.desc</string>
-    <!-- tmdb sort 'vote_average.desc' -->
     <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
 
 
