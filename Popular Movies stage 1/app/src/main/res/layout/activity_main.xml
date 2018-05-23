@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 <!-- completed Movies are displayed in the main layout via a grid of their corresponding movie poster thumbnails.-->
-<!--UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.-->
+<!--UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular.-->
    <GridView
        android:id="@+id/grid_view"
        android:layout_width="fill_parent"
