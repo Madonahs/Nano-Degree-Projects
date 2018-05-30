@@ -27,7 +27,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import com.madonasyombua.myapplication.R;
 
 /**
  * @author madon
