@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.madonasyombua.myapplication.R;
 import com.madonasyombua.myapplication.adapters.MovieAdapter;
 import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
 import com.madonasyombua.myapplication.model.Movie;
@@ -27,7 +28,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.madonasyombua.myapplication.R;
+
 
 /**
  * @author madon

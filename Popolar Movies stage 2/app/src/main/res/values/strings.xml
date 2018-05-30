@@ -29,5 +29,6 @@
     <string name="pref_sort_pop_desc_key">SORT_POPULARITY_DESC</string>
     <string name="sort_popular">PopularMovies</string>
     <string name="top_rated">Top Rated Movies</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
