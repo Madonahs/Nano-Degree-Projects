@@ -9,11 +9,11 @@ In this stage you’ll build the core experience of your movies app.
 * **Allow your user to change sort order via a setting:**
 * **The sort order can be by most popular or by highest-rated**
 * **Allow the user to tap on a movie poster and transition to a details screen with additional information such as:**
-`original title
+original title
 movie poster image thumbnail
 A plot synopsis (called overview in the api)
 user rating (called vote_average in the api)
-release date`
+release date
 
 ## Why this Project?
 To become an Android developer, you must know how to bring particular mobile experiences to life. Specifically, you need to know how to build clean and compelling user interfaces (UIs), fetch data from network services, and optimize the experience for various mobile devices. You will hone these fundamental skills in this project.
