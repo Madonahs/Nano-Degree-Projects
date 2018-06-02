@@ -21,7 +21,7 @@
     <string name="votes">1000 votes</string>
     <string name="release_date_error">Error while loading Date</string>
     <string name="no_date_found">No date found</string>
-    <string name="my_api">123testinggitignore</string>
+
     <!-- include your api here name my_api-->
     <string name="tmdb_sort_pop_desc">popularity.desc</string>
     <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
