@@ -5,4 +5,15 @@
     <dimen name="tmdb_poster_height" tools:keep="@dimen/tmdb_poster_height">278</dimen>
     <dimen name="sixteen_dp">16dp</dimen>
     <dimen name="text_size">16sp</dimen>
+    <dimen name="three_hundred_dp">300dp</dimen>
+    <dimen name="one_fourty_dp">140dp</dimen>
+    <dimen name="two_ten_dp">210dp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="one_seventy_four_dp">174dp</dimen>
+    <dimen name="sixty_dp">60dp</dimen>
+    <dimen name="five_dp">5dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="one_fourty_six_dp">146dp</dimen>
+    <dimen name="eighty_one_dp">81dp</dimen>
+    <item name="body_text_line_spacing" format="float" type="dimen">1.15</item>
 </resources>

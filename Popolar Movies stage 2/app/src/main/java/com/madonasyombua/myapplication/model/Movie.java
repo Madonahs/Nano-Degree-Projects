@@ -13,6 +13,9 @@ public class Movie implements Parcelable{
     private String movieOverview;
     private Double movieVote;
     private String movieRelease;
+    private int id;
+    private String backdropPath;
+
     private static final String Date_TMDB = "yyyy-MM-dd";
 
     //Constructor
@@ -30,6 +33,12 @@ public class Movie implements Parcelable{
 
     }
 
+    public String getBackdropPath() {
+
+        String BASE_URL_IMAGE_BACKDROP = "http://image.tmdb.org/t/p/w780";
+
+        return BASE_URL_IMAGE_BACKDROP + backdropPath;
+    }
     /**
      * This method returns the URL string where the poster will be loaded
      * The base URL will look like: http://image.tmdb.org/t/p/.
@@ -146,6 +155,9 @@ public class Movie implements Parcelable{
 
     }
 
+    public int getId() {
+        return id;
+    }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -177,6 +189,8 @@ public class Movie implements Parcelable{
         dest.writeString(movieOverview);
         dest.writeString(movieRelease);
         dest.writeValue(movieVote);
+        dest.writeValue(backdropPath);
+        dest.writeValue(id);
     }
 
     /**
@@ -189,6 +203,8 @@ public class Movie implements Parcelable{
         movieOverview = in.readString();
         movieRelease = in.readString();
         movieVote = (double) in.readValue(double.class.getClassLoader());
+        backdropPath= in.readString();
+        id = in.readInt();
 
 
     }
