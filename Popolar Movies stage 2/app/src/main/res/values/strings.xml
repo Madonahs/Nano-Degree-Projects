@@ -21,7 +21,7 @@
     <string name="votes">1000 votes</string>
     <string name="release_date_error">Error while loading Date</string>
     <string name="no_date_found">No date found</string>
-    <!-- include your api here name my_api-->
+
 
     <string name="my_api">000000</string>
 
