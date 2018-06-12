@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Adapters;
+package com.madonasyombua.myapplication.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.madonasyombua.myapplication.Model.Movie;
+import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.R;
 import com.squareup.picasso.Picasso;
 

@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Helpers;
+package com.madonasyombua.myapplication.helpers;
 
 
 import android.content.Context;

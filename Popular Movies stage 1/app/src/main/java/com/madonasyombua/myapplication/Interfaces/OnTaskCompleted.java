@@ -1,6 +1,6 @@
-package com.madonasyombua.myapplication.Interfaces;
+package com.madonasyombua.myapplication.interfaces;
 
-import com.madonasyombua.myapplication.Model.Movie;
+import com.madonasyombua.myapplication.model.Movie;
 
 /**
  * @author madon
