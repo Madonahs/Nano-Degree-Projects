@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Activities;
+package com.madonasyombua.myapplication.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +16,12 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.madonasyombua.myapplication.Adapters.MovieAdapter;
-import com.madonasyombua.myapplication.BuildConfig;
-import com.madonasyombua.myapplication.Interfaces.OnTaskCompleted;
-import com.madonasyombua.myapplication.Model.Movie;
+import com.madonasyombua.myapplication.adapters.MovieAdapter;
+import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
+import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.R;
-import com.madonasyombua.myapplication.Utils.MovieAsyncTask;
-import com.madonasyombua.myapplication.Utils.TopRatedMovies;
+import com.madonasyombua.myapplication.utils.MovieAsyncTask;
+import com.madonasyombua.myapplication.utils.TopRatedMovies;
 
 import java.util.Objects;
 
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 if(networkAvailable()) {
 
                     //Make sure you enter your key here
-                    final String apiKey = BuildConfig.my_api;
+                    final String apiKey = "";
 
                     OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
                         @Override
@@ -151,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 if(networkAvailable()) {
 
                     //Make sure you enter your key here
-                     final String apiKey = BuildConfig.my_api;
+                     final String apiKey = "";
 
                     OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
                         @Override

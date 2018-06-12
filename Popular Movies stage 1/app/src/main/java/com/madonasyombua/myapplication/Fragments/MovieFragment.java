@@ -1,5 +1,5 @@
 
-package com.madonasyombua.myapplication.Fragments;
+package com.madonasyombua.myapplication.fragments;
 
 import android.content.Context;
 import android.net.Uri;

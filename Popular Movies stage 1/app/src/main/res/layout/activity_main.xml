@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    tools:context=".activities.MainActivity">
 
 <!--UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular.-->
    <GridView

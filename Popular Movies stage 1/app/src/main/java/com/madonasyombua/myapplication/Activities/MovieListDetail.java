@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Activities;
+package com.madonasyombua.myapplication.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.madonasyombua.myapplication.Helpers.MovieHelper;
-import com.madonasyombua.myapplication.Model.Movie;
+import com.madonasyombua.myapplication.helpers.MovieHelper;
+import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.R;
 import com.squareup.picasso.Picasso;
 

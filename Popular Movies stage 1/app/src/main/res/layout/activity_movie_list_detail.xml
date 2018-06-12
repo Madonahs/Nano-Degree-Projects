@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activities.MovieListDetail">
+    tools:context=".activities.MovieListDetail">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

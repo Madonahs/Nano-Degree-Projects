@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Utils;
+package com.madonasyombua.myapplication.utils;
 
 
 
@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.madonasyombua.myapplication.Interfaces.OnTaskCompleted;
-import com.madonasyombua.myapplication.Model.Movie;
+import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
+import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.R;
 
 import org.json.JSONArray;

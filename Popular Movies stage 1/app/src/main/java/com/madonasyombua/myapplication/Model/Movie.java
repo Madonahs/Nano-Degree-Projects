@@ -1,4 +1,4 @@
-package com.madonasyombua.myapplication.Model;
+package com.madonasyombua.myapplication.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
