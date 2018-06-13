@@ -21,9 +21,6 @@
     <string name="votes">1000 votes</string>
     <string name="release_date_error">Error while loading Date</string>
     <string name="no_date_found">No date found</string>
-
-
-    <string name="my_api"></string>
     <string name="tmdb_sort_pop_desc">popularity.desc</string>
     <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
     <string name="pref_sort_method_key">SORT_METHOD</string>
