@@ -25,3 +25,8 @@ By building this app, you will demonstrate your understanding of the foundationa
 * **You will fetch data from the Internet with theMovieDB API.**
 * **You will use adapters and custom list layouts to populate list views.**
 * **You will incorporate libraries to simplify the amount of code you need to write**
+
+
+## Final
+<img src='https://user-images.githubusercontent.com/11560987/41324531-9564a88a-6e7a-11e8-8eb7-48fb2bb3bd4b.jpg'  width='500' />
+<img src='https://user-images.githubusercontent.com/11560987/41324706-b7dd0e2e-6e7b-11e8-9f74-4a386e98fa6e.jpg'  width='500' />
