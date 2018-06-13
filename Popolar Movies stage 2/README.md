@@ -13,5 +13,3 @@ Welcome back to Popular Movies! In this second and final stage, you’ll add add
 
 ## Final
 
-<img src='https://user-images.githubusercontent.com/11560987/41324531-9564a88a-6e7a-11e8-8eb7-48fb2bb3bd4b.jpg'  width='500' />
-<img src='https://user-images.githubusercontent.com/11560987/41324706-b7dd0e2e-6e7b-11e8-9f74-4a386e98fa6e.jpg'  width='500' />
