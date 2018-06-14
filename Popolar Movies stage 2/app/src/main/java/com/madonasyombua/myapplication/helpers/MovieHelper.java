@@ -12,8 +12,8 @@ import java.util.Date;
  * @author madon
  *
  */
-public class MovieHelper {
-//this class will help me in the date conversion
+class MovieHelper {
+
     /**
      *
      * @param date this is the date to be formatted

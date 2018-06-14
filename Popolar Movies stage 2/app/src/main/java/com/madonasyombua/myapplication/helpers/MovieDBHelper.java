@@ -7,45 +7,40 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * @author madon
  */
-public class MovieDBHelper extends SQLiteOpenHelper {
+class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "movie.db";
-    private static final int VERSION_NAME = 1;
+    private static final String DATABASE_NAME = "movies.db";
+    private static final int DATABASE_VERSION = 1;
 
-    //constructor which take a parameter context
-    public MovieDBHelper(Context context){
-
-        super(context,DATABASE_NAME,null,VERSION_NAME);
+    public MovieDBHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     /**
-     * I have created a table to hold favorite movies if a user selects
-     * @param db this is my Sql database
+     * this is my sqlitedatabase
+     * @param db the created table
      */
-
     @Override
     public void onCreate(SQLiteDatabase db) {
+        final String SQL_CREATE_TABLE = "CREATE TABLE " + MovieContract.MovieListEntry.TABLE_NAME + " (" +
+                MovieContract.MovieListEntry._ID + " INTEGER PRIMARY KEY, " +
+                MovieContract.MovieListEntry.COLUMN_ID + " TEXT NOT NULL, " +
+                MovieContract.MovieListEntry.COLUMN_TITLE + " TEXT NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_OVERVIEW + " TEXT NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_BACKDROP_PATH + " TEXT NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_RUNTIME + " INTEGER NOT NULL," +
+                MovieContract.MovieListEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL)" +
+                "; ";
 
-        final String SQL_Fav_List = "CREATE TABLE " + MovieContract.MovieListEntry.TABLE_NAME + " (" +
-
-                MovieContract.MovieListEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                MovieContract.MovieListEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL," +
-                MovieContract.MovieListEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
-                MovieContract.MovieListEntry.COLUMN_POSTER_IMAGE + " TEXT NOT NULL, " +
-                MovieContract.MovieListEntry.COLUMN_OVERVIEW + " TEXT NOT NULL, " +
-                MovieContract.MovieListEntry.COLUMN_AVERAGE_RATING + " REAL NOT NULL, " +
-                MovieContract.MovieListEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +
-                MovieContract.MovieListEntry.COLUMN_BACKDROP_IMAGE + " TEXT NOT NULL)";
-
-        db.execSQL(SQL_Fav_List);
-
+        db.execSQL(SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS " + MovieContract.MovieListEntry.TABLE_NAME);
         onCreate(db);
-
     }
+
 }

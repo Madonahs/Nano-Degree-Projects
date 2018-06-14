@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
-<!-- completed Movies are displayed in the main layout via a grid of their corresponding movie poster thumbnails.-->
-<!--UI contains an element (i.e a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.-->
-   <GridView
-       android:id="@+id/grid_view"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:numColumns="auto_fit"
-       >
+    android:fitsSystemWindows="true"
+    tools:mContext=".activities.MainActivity">
 
-   </GridView>
+   <android.support.design.widget.AppBarLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:theme="@style/AppTheme.AppBarOverlay">
 
-</android.support.constraint.ConstraintLayout>
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+   </android.support.design.widget.AppBarLayout>
+
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+      <include layout="@layout/movie_list" />
+   </FrameLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+

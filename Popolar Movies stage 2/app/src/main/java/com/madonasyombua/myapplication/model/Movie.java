@@ -1,43 +1,102 @@
 package com.madonasyombua.myapplication.model;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author madon
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie implements Parcelable{
     //movie objects
-    private String movieOriginalTitle;
-    private String moviePosterPath;
-    private String movieOverview;
-    private Double movieVote;
-    private String movieRelease;
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("title")
+    private String title;
+    @JsonProperty("overview")
+    private String overview;
+    @JsonProperty("poster_path")
+    private String posterPath;
+    @JsonProperty("backdrop_path")
     private String backdropPath;
-
-    private static final String Date_TMDB = "yyyy-MM-dd";
+    @JsonProperty("release_date")
+    private String releaseDate;
+    @JsonProperty("runtime")
+    private int runtime;
+    @JsonProperty("vote_average")
+    private double voteAverage;
+    @JsonProperty("videos")
+    private VideoResults videos;
+    @JsonProperty("reviews")
+    private MovieReview reviews;
+    @JsonProperty("genres")
+    private List<Genre> genres;
 
     //Constructor
     public Movie() {
+
     }
 
+    /**
+     * the movie constructor which takes in all the above needed arguments
+     * @param id the movie id
+     * @param title the movie title
+     * @param overview the movie overview
+     * @param posterPath the movie poster path
+     * @param backdropPath the movie backdrop image
+     * @param releaseDate the movie release date
+     * @param runtime the runtime of the movie
+     * @param voteAverage the average vote the movie got
+     * @param videos the movie trailers
+     * @param reviews the movie reviews
+     * @param genres the genre, is it adult, child?...
+     */
+    public Movie(int id, String title, String overview, String posterPath, String backdropPath,
+                 String releaseDate, int runtime, double voteAverage,
+                 VideoResults videos, MovieReview reviews, List<Genre> genres) {
+        this.id = id;
+        this.title = title;
+        this.overview = overview;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+        this.releaseDate = releaseDate;
+        this.runtime = runtime;
+        this.voteAverage = voteAverage;
+        this.videos = videos;
+        this.reviews = reviews;
+        this.genres = genres;
+    }
+    public int getId() {
+        return id;
+    }
     /**
      * this method gets the Title
      *  <p/>
      * @return movie Title
      */
-    public String getTitle(){
-
-        return movieOriginalTitle;
-
+    public String getTitle() {
+        return title;
     }
 
-    public String getBackdropPath() {
-
-        String BASE_URL_IMAGE_BACKDROP = "http://image.tmdb.org/t/p/w780";
-
-        return BASE_URL_IMAGE_BACKDROP + backdropPath;
+    /**
+     * This method return the details on the movie
+     *  <p/>
+     * @return Movie description
+     */
+    public String getMovieOverview() {
+        return overview;
     }
     /**
      * This method returns the URL string where the poster will be loaded
@@ -48,116 +107,93 @@ public class Movie implements Parcelable{
      *  <p/>
      * @return URL string
      */
-    public String getMoviePosterPath(){
-
-        final String MOVIE_TMDB_URL = "https://image.tmdb.org/t/p/w185";
-
-        return  MOVIE_TMDB_URL + moviePosterPath;
+    public String getMoviePosterPath() {
+        return posterPath;
     }
 
     /**
-     * This method return the details on the movie
-     *  <p/>
-     * @return Movie description
+     * get the back drop image
+     * @return back drop image
      */
-
-    public String getMovieOverview(){
-
-        return movieOverview;
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
+    /**
+     * get the movie release date
+     * @return release date
+     */
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    /**
+     * getting the localized date due to time zones
+     * @param context context
+     * @return formatted date
+     */
+    public String getReleaseDateLocalized(Context context) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
+        Date date;
+        try {
+            date = sdf.parse(releaseDate);
+        } catch (ParseException e) {
+            return releaseDate;
+        }
+        DateFormat dateFormat = android.text.format.DateFormat.getMediumDateFormat(context);
+        return dateFormat.format(date);
+    }
+
+    /**
+     * get the runtime of the movie
+     * @return if it is 1hr +
+     */
+    public int getRuntime() {
+        return runtime;
+    }
     /**
      * This method gets movie votes
      * <p/>
      * @return all the votes the movie got
      */
-    public Double getMovieVote(){
-
-        return movieVote;
+    public double getVoteAverage() {
+        return voteAverage;
     }
 
     /**
-     * This method gets the date from TMDB
-     *  <p/>
-     * @return get the release date
+     * get the video trailers
+     * @return videos
      */
-    public String getMovieRelease(){
-
-        return movieRelease;
-    }
-    /**
-     * Sets original movie name from TMDB
-     * @param originalTitle this is the movie original title
-     */
-    public void setMovieOriginalTitle(String originalTitle){
-
-        movieOriginalTitle = originalTitle;
-
+    public VideoResults getVideos() {
+        return videos;
     }
 
     /**
-     * This method gets the Score from the TMDB
-     * <p/>
-     * @return the Vote average
+     * get the movie reviews
+     * @return movie reviews
      */
-    public String getVoteAverage(){
-
-        return String.valueOf(getMovieVote()) + "/10";
-
-    }
-    /**
-     * Takes path from TMDB and sets the path
-     * @param posterPath this is the poster path
-     */
-    public  void setMoviePosterPath (String posterPath){
-        moviePosterPath = posterPath;
+    public MovieReview getReviews() {
+        return reviews;
     }
 
     /**
-     *
-     * @return the date format
+     * get the genre which
+     * @return genres
      */
-    public String getDate(){
-
-        return Date_TMDB;
-    }
-    /**
-     * Take the Movie title and sets it.
-     * @param overview this is the movie description from TMDB
-     */
-    public void setMovieOverview(String overview){
-     //check if it equals null
-        if(!overview.equals("null")){
-            movieOverview =overview;
-        }
-
+    public List<Genre> getGenres() {
+        return genres;
     }
 
     /**
-     * we will get this from TMDB
-     * @param movieVote1 this gives the average movie vote
+     * get the duration of the movie
+     * @return runtime + minutes
      */
-    public void setMovieVote(Double movieVote1){
-        movieVote = movieVote1;
+    public String getDuration() {
+
+        return String.valueOf(runtime) + " min";
     }
 
-    /**
-     * we will set the original date based on the data we collect from TMDB
-     * @param movie_Release_Date this is the original release date from TMDB
-     */
-    public void setMovieRealease(String movie_Release_Date){
-        //we will check to make sure the data is not null
 
-
-        if(!movie_Release_Date.equals("null")){
-            movieRelease = movie_Release_Date;
-        }
-
-    }
-
-    public int getId() {
-        return id;
-    }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -184,28 +220,34 @@ public class Movie implements Parcelable{
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(movieOriginalTitle);
-        dest.writeString(moviePosterPath);
-        dest.writeString(movieOverview);
-        dest.writeString(movieRelease);
-        dest.writeValue(movieVote);
-        dest.writeValue(backdropPath);
-        dest.writeValue(id);
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.overview);
+        dest.writeString(this.posterPath);
+        dest.writeString(this.backdropPath);
+        dest.writeString(this.releaseDate);
+        dest.writeInt(this.runtime);
+        dest.writeDouble(this.voteAverage);
+        dest.writeParcelable(this.videos, flags);
+        dest.writeParcelable(this.reviews, flags);
+        dest.writeTypedList(this.genres);
     }
 
     /**
      *
      * @param in parcel read string
      */
-    private Movie(Parcel in){
-        movieOriginalTitle = in.readString();
-        moviePosterPath = in.readString();
-        movieOverview = in.readString();
-        movieRelease = in.readString();
-        movieVote = (double) in.readValue(double.class.getClassLoader());
-        backdropPath= in.readString();
-        id = in.readInt();
-
-
+    private Movie(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.overview = in.readString();
+        this.posterPath = in.readString();
+        this.backdropPath = in.readString();
+        this.releaseDate = in.readString();
+        this.runtime = in.readInt();
+        this.voteAverage = in.readDouble();
+        this.videos = in.readParcelable(VideoResults.class.getClassLoader());
+        this.reviews = in.readParcelable(MovieReview.class.getClassLoader());
+        this.genres = in.createTypedArrayList(Genre.CREATOR);
     }
 }

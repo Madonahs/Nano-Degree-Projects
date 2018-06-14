@@ -3,23 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
     card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp">
+    card_view:cardElevation="4dp"
+    tools:keep="@layout/reviews_cardview">
 
         <LinearLayout
-            android:id="@+id/ll_layout_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
             <TextView
-                android:id="@+id/tv_reviews_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -31,7 +29,6 @@
                 tools:visibility="visible" />
 
             <View
-                android:id="@+id/line_reviews_heading"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorPrimary"
@@ -40,7 +37,6 @@
 
 
             <TextView
-                android:id="@+id/tv_review_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -50,7 +46,6 @@
                 tools:text="@string/name" />
 
             <TextView
-                android:id="@+id/tv_review_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"

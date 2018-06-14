@@ -1,220 +1,446 @@
 package com.madonasyombua.myapplication.activities;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.madonasyombua.myapplication.adapters.MovieAdapter;
-import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
-import com.madonasyombua.myapplication.model.Movie;
+import com.madonasyombua.myapplication.adapters.FavouriteMoviesAdapter;
+import com.madonasyombua.myapplication.adapters.MoviesAdapter;
+import com.madonasyombua.myapplication.helpers.MovieContract;
+import com.madonasyombua.myapplication.interfaces.DBUpdateListener;
 import com.madonasyombua.myapplication.R;
-import com.madonasyombua.myapplication.utils.MovieAsyncTask;
-import com.madonasyombua.myapplication.utils.TopRatedMovies;
-
-import java.util.Objects;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.madonasyombua.myapplication.model.Movies;
+import com.madonasyombua.myapplication.network.MoviesApiManager;
+import com.madonasyombua.myapplication.utils.ItemDecoration;
+import com.madonasyombua.myapplication.utils.Network;
+import com.madonasyombua.myapplication.utils.RecyclerViewScrollListener;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author madon
  *
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    @BindView(R.id.grid_view)
-    GridView mGridView;
+        private RecyclerViewScrollListener mScrollListener;
+        private SwipyRefreshLayout mSwipeRefreshLayout;
+        private RecyclerView mRecyclerView;
+        private View mNoDataContainer;
+        private TextView mNoDataContainerMsg;
+        private MoviesApiManager.SortBy sortBy = MoviesApiManager.SortBy.MostPopular;
 
+        private static final String BUNDLE_MOVIES_KEY = "movies";
+        private static final String BUNDLE_RECYCLER_POSITION_KEY = "recycler_position";
+        private static final int FAVOURITES_MOVIE_LOADER_ID = 89;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        private Movies mMovies = new Movies();
 
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /**
+         * Whether or not the activity is in two-pane mode, i.e. running on a tablet
+         * device.
+         */
+        private boolean mTwoPane;
+
+        // Receivers
+        private final BroadcastReceiver networkChangeReceiver = new BroadcastReceiver() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie movie = (Movie) parent.getItemAtPosition(position);
+            public void onReceive(Context context, Intent intent) {
 
-                Intent intent = new Intent(getApplicationContext(), MovieListDetail.class);
-                intent.putExtra(getResources().getString(R.string.movie_parcel), movie);
-
-                startActivity(intent);
-            }
-        });
-
-        if(savedInstanceState == null){
-            getMovies(getSortedMethod());
-        }else {
-
-            Parcelable[] parcelable = savedInstanceState.
-                    getParcelableArray(getString(R.string.movie_parcel));
-
-            if (parcelable != null) {
-                int numMovieObjects = parcelable.length;
-                Movie[] movies = new Movie[numMovieObjects];
-                for (int i = 0; i < numMovieObjects; i++) {
-                    movies[i] = (Movie) parcelable[i];
-                }
-                mGridView.setAdapter(new MovieAdapter(this, movies));
-            }
-        }
-    }
-
-    /**
-     * If a user sorts and sets
-     * @return returns the sorted method from shared preference
-     */
-    private String getSortedMethod() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        return  sharedPreferences.getString(getString(R.string.pref_sort_method_key),
-                getString(R.string.tmdb_sort_pop_desc));
-    }
-
-    /**
-     * in this method i will get the objects from gridview and save to bundle
-     * @param outState save the objects to bundle
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        int mGridViewCount = mGridView.getCount();
-        if ( mGridViewCount > 0) {
-
-            Movie[] movies = new Movie[ mGridViewCount];
-            for (int i = 0; i <  mGridViewCount; i++) {
-                movies[i] = (Movie) mGridView.getItemAtPosition(i);
-            }
-
-            outState.putParcelableArray(getString(R.string.movie_parcel), movies);
-        }
-
-        super.onSaveInstanceState(outState);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        int id = item.getItemId();
-        switch (id){
-   // I decided to create this to bring the top rated movies. :) If you can suggest other better ways thank :)
-            //popular movies
-            case R.id.menu_sort_by_pop:
-                setTitle(R.string.app_name);
-                if(networkAvailable()) {
-
-                    //Make sure you enter your key here
-                    String apiKey = getString(R.string.my_api);
-
-                    OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
-                        @Override
-                        public void onFetchMovie(Movie[] movies) {
-                            mGridView.setAdapter(new MovieAdapter(getApplicationContext(), movies));
+                // Movies never loaded. Get them! (Entry Point)
+                if (mRecyclerView.getAdapter() == null) {
+                    if (isNetworkAvailable()) {
+                        loadMovies();
+                    } else {
+                        if (sortBy == MoviesApiManager.SortBy.Favourite) {
+                            // We can load favourite movies even without connection
+                            loadMovies();
                         }
-                    };
-
-                    MovieAsyncTask movieAsyncTask = new MovieAsyncTask(onTaskCompleted, apiKey);
-                    movieAsyncTask.execute(getSortedMethod());
-                }else {
-                    Toast.makeText(this,getString(R.string.connect),Toast.LENGTH_SHORT).show();
+                        mNoDataContainerMsg.setText(R.string.no_internet);
+                    }
+                    toggleNoDataContainer();
                 }
+
+                if (mScrollListener != null) {
+                    mScrollListener.setLoading(false);
+                }
+            }
+        };
+
+    /**
+     *  The detail container view will be present only in the large-screen layouts (res/values-w900dp).
+     *  If this view is present, then the activity should be in two-pane mode.
+     * @param savedInstanceState saved instance state
+     */
+    @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+
+            loadSortSelected();
+
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            toolbar.setTitle(getTitle());
+
+            if (findViewById(R.id.movieDetailContainer) != null) {
+
+                mTwoPane = true;
+            }
+
+            mNoDataContainer = findViewById(R.id.noDataContainer);
+            mNoDataContainerMsg = findViewById(R.id.tvNoDataMsg);
+
+            mRecyclerView = findViewById(R.id.rvMovieList);
+            setupRecyclerView();
+
+            mSwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+            setupSwipeRefreshLayout();
+        }
+
+        @Override
+        protected void onSaveInstanceState(Bundle outState) {
+            super.onSaveInstanceState(outState);
+
+            if (mScrollListener != null && !mMovies.getResults().isEmpty()) {
+                outState.putInt(BUNDLE_RECYCLER_POSITION_KEY, mScrollListener.getFirstCompletelyVisibleItemPosition());
+                outState.putParcelable(BUNDLE_MOVIES_KEY, mMovies);
+            }
+        }
+
+        @Override
+        protected void onRestoreInstanceState(Bundle savedInstanceState) {
+            super.onRestoreInstanceState(savedInstanceState);
+
+            Movies tempMovie = savedInstanceState.getParcelable(BUNDLE_MOVIES_KEY);
+            int position = savedInstanceState.getInt(BUNDLE_RECYCLER_POSITION_KEY);
+            if (tempMovie != null) {
+                mMovies = tempMovie;
+
+                setRecyclerViewAdapter(new MoviesAdapter(this, mMovies, mTwoPane));
+                toggleNoDataContainer();
+                mRecyclerView.getLayoutManager().scrollToPosition(position);
+            }
+        }
+
+        @Override
+        protected void onResume() {
+            Logger.i("onResume()");
+
+            super.onResume();
+            try {
+                registerReceiver(networkChangeReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+            } catch (Exception ex) {
+                Logger.e(ex.getMessage());
+            }
+        }
+
+        @Override
+        protected void onPause() {
+            Logger.i("onPause()");
+            try {
+                unregisterReceiver(networkChangeReceiver);
+            } catch (Exception ex) {
+                Logger.e(ex.getMessage());
+            }
+
+            super.onPause();
+        }
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.main, menu);
+
+            // Restored Instance State
+            if (sortBy == MoviesApiManager.SortBy.TopRated)
+                menu.findItem(R.id.menu_sort_top_rated).setChecked(true);
+            else if (sortBy == MoviesApiManager.SortBy.Favourite)
+                menu.findItem(R.id.menu_sort_favourite).setChecked(true);
+
             return true;
-
-                //top rated movies
-            case R.id.menu_sort_by_avg:
-                setTitle(R.string.top_rated);
-                if(networkAvailable()) {
-
-                    //Make sure you enter your key here
-                    String apiKey = getString(R.string.my_api);
-
-                    OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
-                        @Override
-                        public void onFetchMovie(Movie[] movies) {
-                            mGridView.setAdapter(new MovieAdapter(getApplicationContext(), movies));
-                        }
-                    };
-
-                   TopRatedMovies movieAsyncTask = new TopRatedMovies(onTaskCompleted, apiKey);
-
-                    movieAsyncTask.execute(getSortedMethod());
-                }else {
-                    Toast.makeText(this,getString(R.string.connect),Toast.LENGTH_SHORT).show();
-                }
-                return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
 
-    }
+            switch (id) {
+                case R.id.menu_sort_popularity:
+                    if (sortBy != MoviesApiManager.SortBy.MostPopular) {
+                        if (isNetworkAvailable()) {
+                            sortBy = MoviesApiManager.SortBy.MostPopular;
+                            loadMovies();
+                            item.setChecked(true);
+                            saveSortSelected();
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    break;
+                case R.id.menu_sort_top_rated:
+                    if (sortBy != MoviesApiManager.SortBy.TopRated) {
+                        if (isNetworkAvailable()) {
+                            sortBy = MoviesApiManager.SortBy.TopRated;
+                            loadMovies();
+                            item.setChecked(true);
+                            saveSortSelected();
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    break;
+                case R.id.menu_sort_favourite:
+                    if (sortBy != MoviesApiManager.SortBy.Favourite) {
+                        sortBy = MoviesApiManager.SortBy.Favourite;
+                        loadMovies();
+                        item.setChecked(true);
+                        saveSortSelected();
+                    }
+                    break;
+            }
 
+            setTitleAccordingSort();
+            return super.onOptionsItemSelected(item);
+        }
 
-    /**
-     * When a user changes the sort criteria (“most popular and highest rated”)
-     * the main view gets updated correctly.
-     * @param sortMethod the TMDB api method for sorting the movies
-     */
-    private void getMovies(String sortMethod){
-        if(networkAvailable()) {
+        private void setupRecyclerView() {
+            int spanCount = getHandySpanCount();
 
-            //Make sure you enter your key here
-            String apiKey = getString(R.string.my_api);
-
-            OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
+            GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), spanCount);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.addItemDecoration(new ItemDecoration((int) getResources().getDimension(R.dimen.movie_list_items_margin), ItemDecoration.GRID));
+            mScrollListener = new RecyclerViewScrollListener(layoutManager) {
                 @Override
-                public void onFetchMovie(Movie[] movies) {
-                    mGridView.setAdapter(new MovieAdapter(getApplicationContext(), movies));
+                public void onLoadMore(int totalItemsCount, RecyclerView view) {
+                    // We don't want to display "no_internet" message on Endless Scroll so check if network is available
+                    if (isNetworkAvailable()) {
+                        loadMoreMovies();
+                    }
+                }
+            };
+            mRecyclerView.addOnScrollListener(mScrollListener);
+        }
+
+        private void setRecyclerViewAdapter(RecyclerView.Adapter adapter) {
+            mRecyclerView.clearOnScrollListeners();
+
+            if (adapter != null) {
+                if (adapter instanceof MoviesAdapter) {
+                    mRecyclerView.addOnScrollListener(mScrollListener);
+                    mSwipeRefreshLayout.setDirection(SwipyRefreshLayoutDirection.BOTH);
+                } else if (adapter instanceof FavouriteMoviesAdapter) {
+                    mSwipeRefreshLayout.setDirection(SwipyRefreshLayoutDirection.TOP);
+                }
+            }
+            mRecyclerView.setAdapter(adapter);
+            toggleNoDataContainer();
+            mScrollListener.resetState();
+            mSwipeRefreshLayout.setRefreshing(false);
+
+            // If on two pane mode clear movie details fragment
+            if (adapter == null) {
+                ViewGroup view = findViewById(R.id.movieDetailContainer);
+                if (view != null) {
+                    view.removeAllViews();
+                }
+            }
+        }
+
+        private void setupSwipeRefreshLayout() {
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh(SwipyRefreshLayoutDirection direction) {
+                    if (direction == SwipyRefreshLayoutDirection.TOP) {
+                        loadMovies();
+                    } else {
+                        loadMoreMovies();
+                    }
+                }
+            });
+        }
+
+        private void loadMovies() {
+            // Get the movies
+            getMovies(1);
+        }
+
+        private void loadMoreMovies() {
+            getMovies(mMovies.getPage() + 1);
+        }
+
+        private void getMovies(final int page) {
+            if (sortBy != MoviesApiManager.SortBy.Favourite) {
+                if (isNetworkAvailable()) {
+                    getSupportLoaderManager().destroyLoader(FAVOURITES_MOVIE_LOADER_ID);
+
+                    MoviesApiManager.getInstance().getMovies(sortBy, page, new DBUpdateListener<Movies>() {
+                        @Override
+                        public void onResponse(Movies result) {
+                            if (result != null) {
+                                if (page == 1) { // Refreshing movies
+                                    mMovies = result;
+                                    setRecyclerViewAdapter(new MoviesAdapter(MainActivity.this, mMovies, mTwoPane));
+                                } else {
+                                    if (mRecyclerView.getAdapter() instanceof MoviesAdapter) {
+                                        ((MoviesAdapter) mRecyclerView.getAdapter()).updateMovies(result);
+                                    }
+                                }
+                            } else {
+                                mNoDataContainerMsg.setText(R.string.error);
+                                Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                            }
+                            mSwipeRefreshLayout.setRefreshing(false);
+                        }
+
+                        @Override
+                        public void onCancel() {
+                        }
+                    });
+                } else {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    mNoDataContainerMsg.setText(R.string.no_internet);
+                    Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                mMovies = new Movies();
+                // Reset recycler adapter
+                setRecyclerViewAdapter(null);
+                getSupportLoaderManager().initLoader(FAVOURITES_MOVIE_LOADER_ID, null, this);
+            }
+
+        }
+
+        private void toggleNoDataContainer() {
+            if (mRecyclerView.getAdapter() != null && mRecyclerView.getAdapter().getItemCount() > 0) {
+                mRecyclerView.setVisibility(View.VISIBLE);
+                mNoDataContainer.setVisibility(View.GONE);
+            } else {
+                mRecyclerView.setVisibility(View.GONE);
+                mNoDataContainer.setVisibility(View.VISIBLE);
+            }
+        }
+
+        private int getHandySpanCount() {
+            // Get width regarding ratio 2:3
+            double aa = (int) getResources().getDimension(R.dimen.movie_image_height) / 1.5;
+            double ab = getResources().getDisplayMetrics().widthPixels;
+            if (mTwoPane) {
+                // If in Two Pane Mode Recycler View width is Guidelines Percentage
+                TypedValue typedValue = new TypedValue();
+                getResources().getValue(R.dimen.movies_list_detail_separator_percent, typedValue, true);
+                float ac = typedValue.getFloat();
+                ab = ac * ab;
+            }
+            double ac = (ab / aa);
+            return (int) Math.round(ac);
+        }
+
+        private boolean isNetworkAvailable() {
+            return Network.isNetworkAvailable(getApplicationContext());
+        }
+
+        private void saveSortSelected() {
+            getPreferences(Context.MODE_PRIVATE).edit().putInt(getString(R.string.saved_sort_by_key), sortBy.ordinal()).apply();
+        }
+
+        private void setTitleAccordingSort() {
+            switch (sortBy) {
+                case MostPopular:
+                    setTitle(getString(R.string.sort_pop));
+                    break;
+                case TopRated:
+                    setTitle(getString(R.string.top_rated));
+                    break;
+                case Favourite:
+                    setTitle(getString(R.string.favorite));
+                    break;
+            }
+        }
+
+        private void loadSortSelected() {
+            sortBy = MoviesApiManager.SortBy.fromId(getPreferences(Context.MODE_PRIVATE).getInt(getString(R.string.saved_sort_by_key), 0));
+            setTitleAccordingSort();
+        }
+
+        @NonNull
+        @SuppressLint("StaticFieldLeak")
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            return new AsyncTaskLoader<Cursor>(this) {
+
+                Cursor mTaskData = null;
+
+                @Override
+                protected void onStartLoading() {
+                    if (mTaskData != null) {
+
+                        deliverResult(mTaskData);
+                    } else {
+                        forceLoad();
+                    }
+                }
+                @Override
+                public Cursor loadInBackground() {
+
+
+                    try {
+                        return getContentResolver().query(MovieContract.MovieListEntry.CONTENT_URI,
+                                null,
+                                null,
+                                null,
+                                MovieContract.MovieListEntry._ID);
+
+                    } catch (Exception e) {
+                        Logger.e(String.valueOf(R.string.fail));
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+
+                public void deliverResult(Cursor data) {
+                    mTaskData = data;
+                    super.deliverResult(data);
                 }
             };
 
-            MovieAsyncTask movieAsyncTask = new MovieAsyncTask(onTaskCompleted, apiKey);
-            movieAsyncTask.execute(sortMethod);
-        }else {
-            Toast.makeText(this,getString(R.string.connect),Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * This method will check my internet connection
-     * @return successful if connected to internet and false if not
-     */
-    private boolean networkAvailable() {
-
-            ConnectivityManager connectivityManager
-                    = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            activeNetworkInfo = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
         }
 
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        @Override
+        public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+            if (data != null && data.getCount() > 0) {
+                setRecyclerViewAdapter(new FavouriteMoviesAdapter(this, data, mTwoPane));
+            } else {
+                mNoDataContainerMsg.setText(R.string.no_favourite_movies_message);
+            }
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+
+        @Override
+        public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+        }
     }
-
-
-
-
-}

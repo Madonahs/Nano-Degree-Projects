@@ -15,10 +15,5 @@
   -->
 
 <resources>
-    <dimen name="app_bar_height">200dp</dimen>
-    <dimen name="movie_image_height">250dp</dimen>
-    <dimen name="movie_list_items_margin">8dp</dimen>
-
-    <dimen name="video_list_items_margin">6dp</dimen>
-    <item name="movie_image_detail_width_percent" format="float" type="dimen">0.4</item>
+    <item name="movie_image_detail_width_percent" format="float" type="dimen">0.25</item>
 </resources>

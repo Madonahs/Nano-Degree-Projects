@@ -2,43 +2,28 @@
     <string name="app_name">Popular Movies</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error">Error</string>
-    <string name="error_while_closing">An Error Occurred while closing</string>
     <string name="sort_pop">Popular Movies</string>
-    <string name="sort_rating">Top Rated</string>
-    <string name="movie_parcel">PARCEL_MOVIE</string>
-    <string name="connect">Connectivity Issues</string>
-    <string name="sort_method_key">Sort Method Key</string>
-    <string name="sort_pop_dec" >Sort Popularity</string>
-    <string name="sort_avg_dec" >Sort Average</string>
     <string name="todo">TODO</string>
-    <string name="title">After the death of his father, T\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T\'Challa\'s mettle as king — and as Black Panther — gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
-    <string name="date">Release Date</string>
+    <string name="brief">After the death of his father, T\\\'Challa returns home to the African nation of Wakanda to take his rightful place as king. When a powerful enemy suddenly reappears, T\'Challa\'s mettle as king — and as Black Panther — gets tested when he's drawn into a conflict that puts the fate of Wakanda </string>
     <string name="vote_average">4.0 / 5.0</string>
     <string name="released">February 16, 2018</string>
-    <string name="brief">Black Panther</string>
-    <string name="votes">1000 votes</string>
-    <string name="release_date_error">Error while loading Date</string>
-    <string name="no_date_found">No date found</string>
-
-
-    <string name="my_api">000000</string>
-
-    <string name="tmdb_sort_pop_desc">popularity.desc</string>
-    <string name="tmdb_sort_vote_avg_desc">vote_average.desc</string>
-    <string name="pref_sort_method_key">SORT_METHOD</string>
-    <string name="pref_sort_vote_avg_desc_key">SORT_VOTE_AVERAGE_DESC</string>
-    <string name="pref_sort_pop_desc_key">SORT_POPULARITY_DESC</string>
-    <string name="sort_popular">PopularMovies</string>
+    <string name="title">Black Panther</string>
     <string name="top_rated">Top Rated Movies</string>
     <string name="favorite">Favourite</string>
     <string name="reviews">Reviews</string>
     <string name="name">Name</string>
     <string name="text">This was the best mover in 2018</string>
-    <string name="uri_error">Sorry try Again, Parsing Uri Failes</string>
-    <string name="no_internet_connection">No Internet Connection</string>
-    <string name="movie_trailers_dialog_title">Movie Trailer</string>
-    <string name="no_internet_connection_to_show_reviews">Error Occured</string>
+    <string name="menu">Menu</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="saved_sort_by_key">sort_by</string>
+    <string name="no_favourite_movies_message">No Saved Favorite, Please Save some.</string>
+    <string name="error_message">Movie data is not available</string>
+    <string name="runtime">154min</string>
+    <string name="share">Share</string>
+    <string name="share_trailer">Share Trailer</string>
+    <string name="removed_from_favourite">Removed from Favorite</string>
+    <string name="added_to_favourite">Movie Added to Favorite</string>
+    <string name="fail">Failed to asynchronously load data.</string>
 
 </resources>

@@ -2,11 +2,10 @@ package com.madonasyombua.myapplication.utils;
 
 import android.content.Context;
 
-public class URIManagers {
+class URIManagers {
 
-    private Context mContext;
     private URIManagers(Context context){
 
-        mContext = context;
+        Context mContext = context;
     }
 }
