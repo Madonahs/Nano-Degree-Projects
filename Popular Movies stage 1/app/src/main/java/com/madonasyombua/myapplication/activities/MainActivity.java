@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.madonasyombua.myapplication.BuildConfig;
 import com.madonasyombua.myapplication.adapters.MovieAdapter;
 import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
 import com.madonasyombua.myapplication.model.Movie;
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         if(networkAvailable()) {
 
             //Make sure you enter your key here
-            String apiKey = getString(R.string.my_api);
+            String apiKey = BuildConfig.my_api;
 
             OnTaskCompleted onTaskCompleted = new OnTaskCompleted() {
                 @Override

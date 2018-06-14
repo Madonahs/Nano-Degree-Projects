@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.madonasyombua.myapplication.BuildConfig;
 import com.madonasyombua.myapplication.interfaces.OnTaskCompleted;
 import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.R;
@@ -179,7 +180,7 @@ public class TopRatedMovies extends AsyncTask<String,Void,Movie[]> {
 
         final String BASE_URL = "http://api.themoviedb.org/3/movie/top_rated?api_key=";
         String Sort_Parameter = "sort by";
-        String Api_Key = "api_key";
+        String Api_Key = BuildConfig.my_api;
 
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(Sort_Parameter,strings[0])
