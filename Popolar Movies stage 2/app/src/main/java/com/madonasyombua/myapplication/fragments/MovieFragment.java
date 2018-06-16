@@ -140,14 +140,9 @@ public class MovieFragment extends Fragment {
 
         final ImageView backDropImageView = getActivity().findViewById(R.id.backDropImage);
         if (backDropImageView != null) {
-            backDropImageView.post(new Runnable() {
-                @Override
-                public void run() {
-                    Picasso.with(getActivity().getApplicationContext())
-                            .load(ImageUtils. buildBackdropImage(mMovie.getBackdropPath(), backDropImageView.getWidth()))
-                            .into(backDropImageView);
-                }
-            });
+            backDropImageView.post(() -> Picasso.with(getActivity().getApplicationContext())
+                    .load(ImageUtils. buildBackdropImage(mMovie.getBackdropPath(), backDropImageView.getWidth()))
+                    .into(backDropImageView));
         }
 
         mTvTitle.setText(mMovie.getTitle());
@@ -163,15 +158,11 @@ public class MovieFragment extends Fragment {
             mGenresContainer.addView(textView);
         }
 
-        mIvMovie.post(new Runnable() {
-            public void run() {
-                Picasso.with(getActivity().getApplicationContext())
-                        .load(ImageUtils.buildPosterImageUrl(mMovie.getMoviePosterPath(), mIvMovie.getWidth()))
-                        .placeholder(R.drawable.loading)
-                        .error(R.drawable.loading)
-                        .into(mIvMovie);
-            }
-        });
+        mIvMovie.post(() -> Picasso.with(getActivity().getApplicationContext())
+                .load(ImageUtils.buildPosterImageUrl(mMovie.getMoviePosterPath(), mIvMovie.getWidth()))
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.loading)
+                .into(mIvMovie));
 
 
         setUpVideosRecyclerView();

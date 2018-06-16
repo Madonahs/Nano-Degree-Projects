@@ -59,25 +59,17 @@ public class FavouriteMoviesAdapter  extends RecyclerView.Adapter<FavouriteMovie
     @Override
     public void onBindViewHolder(@NonNull final MovieViewHolder holder, int position) {
         final int pos = position;
-        holder.mIvMovie.post(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.with(mParentActivity.getApplicationContext())
-                        .load(ImageUtils.buildPosterImageUrl(mFavouriteMovies.get(pos).getMoviePosterPath(), holder.mIvMovie.getWidth()))
-                        .placeholder(R.drawable.loading)
-                        .error(R.drawable.loading)
-                        .into(holder.mIvMovie);
-            }
-        });
+        holder.mIvMovie.post(() -> Picasso.with(mParentActivity.getApplicationContext())
+                .load(ImageUtils.buildPosterImageUrl(mFavouriteMovies.get(pos).getMoviePosterPath(), holder.mIvMovie.getWidth()))
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.loading)
+                .into(holder.mIvMovie));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (callRequest != null) {
-                    callRequest.cancel();
-                }
-                getMovieAndShowDetails(pos, holder);
+        holder.itemView.setOnClickListener(view -> {
+            if (callRequest != null) {
+                callRequest.cancel();
             }
+            getMovieAndShowDetails(pos, holder);
         });
 
         if (position == 0 && mTwoPane) {
@@ -163,7 +155,7 @@ public class FavouriteMoviesAdapter  extends RecyclerView.Adapter<FavouriteMovie
                     cursor.getInt(voteAverageIndex),
                     new VideoResults(),
                     new MovieReview(),
-                    new ArrayList<Genre>()
+                    new ArrayList<>()
             ));
         }
     }
@@ -172,7 +164,7 @@ public class FavouriteMoviesAdapter  extends RecyclerView.Adapter<FavouriteMovie
         public final ImageView mIvMovie;
         private final LinearLayout mProgressBarContainer;
 
-        public MovieViewHolder(View itemView) {
+        MovieViewHolder(View itemView) {
             super(itemView);
 
             mProgressBarContainer = itemView.findViewById(R.id.progressBarContainer);

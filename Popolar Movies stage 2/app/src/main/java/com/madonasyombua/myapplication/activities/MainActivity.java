@@ -271,14 +271,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         private void setupSwipeRefreshLayout() {
-            mSwipeRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh(SwipyRefreshLayoutDirection direction) {
-                    if (direction == SwipyRefreshLayoutDirection.TOP) {
-                        loadMovies();
-                    } else {
-                        loadMoreMovies();
-                    }
+            mSwipeRefreshLayout.setOnRefreshListener((SwipyRefreshLayoutDirection direction) -> {
+                if (direction == SwipyRefreshLayoutDirection.TOP) {
+                    loadMovies();
+                } else {
+                    loadMoreMovies();
                 }
             });
         }

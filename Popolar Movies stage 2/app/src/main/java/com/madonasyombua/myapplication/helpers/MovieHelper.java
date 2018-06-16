@@ -1,6 +1,7 @@
 package com.madonasyombua.myapplication.helpers;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.text.DateFormat;
@@ -22,7 +23,7 @@ class MovieHelper {
      * @throws ParseException  ParseException
      */
     private static Date getDate(String date,String format) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 
         return simpleDateFormat.parse(date);
 
