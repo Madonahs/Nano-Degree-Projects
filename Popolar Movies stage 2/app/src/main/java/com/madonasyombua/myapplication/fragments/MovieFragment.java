@@ -109,6 +109,7 @@ public class MovieFragment extends Fragment {
         return rootView;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void initializeViews(View rootView) {
         mIvMovie = rootView.findViewById(R.id.ivMovie);
 
@@ -124,18 +125,13 @@ public class MovieFragment extends Fragment {
         mRvReviews = rootView.findViewById(R.id.rvReviews);
         mFbLike = rootView.findViewById(R.id.fbLike);
 
-        mFbLike.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                switchFavouriteStatus();
-            }
-        });
+        mFbLike.setOnClickListener (view -> switchFavouriteStatus());
     }
 
     @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void populateUI() {
         CollapsingToolbarLayout appBarLayout = Objects.requireNonNull(getActivity()).findViewById(R.id.toolbar_layout);
+
         if (appBarLayout != null) {
             appBarLayout.setTitle(mMovie.getTitle());
         }
