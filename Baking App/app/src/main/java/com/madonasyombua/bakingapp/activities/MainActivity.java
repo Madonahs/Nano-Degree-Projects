@@ -1,7 +1,9 @@
-package com.madonasyombua.bakingapp;
+package com.madonasyombua.bakingapp.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.madonasyombua.bakingapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
