@@ -12,6 +12,8 @@ import com.madonasyombua.myapplication.R;
 import com.madonasyombua.myapplication.model.MovieReview;
 import com.madonasyombua.myapplication.model.Review;
 
+import butterknife.BindView;
+
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
     private final MovieReview mReviews;
 
@@ -42,8 +44,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     }
 
     class ReviewViewHolder extends RecyclerView.ViewHolder {
-        final TextView mTvReviewAuthor;
-        final TextView mTvReviewContent;
+        @BindView(R.id.tvReviewAuthor)
+        TextView mTvReviewAuthor;
+        @BindView(R.id.tvReviewContent)
+        TextView mTvReviewContent;
 
         ReviewViewHolder(View itemView) {
             super(itemView);

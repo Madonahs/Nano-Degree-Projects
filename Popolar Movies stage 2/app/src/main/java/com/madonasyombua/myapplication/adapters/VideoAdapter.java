@@ -16,6 +16,8 @@ import com.madonasyombua.myapplication.model.Video;
 import com.madonasyombua.myapplication.model.VideoResults;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
     private final Context mContext;
     private final VideoResults mVideoResults;
@@ -67,15 +69,17 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     }
 
     private String buildThumbnailUrl(String videoId) {
-        return "https://img.youtube.com/vi/" + videoId + "/hqdefault.jpg";
+        return "https://img.youtube.com/vi/" + videoId + ".jpg";
     }
 
     /**
      * my video View holder inner class
      */
     class VideoViewHolder extends RecyclerView.ViewHolder {
-        final ImageView mIvVideoThumb;
-        final TextView mTvVideoTitle;
+        @BindView(R.id.cvVideo)
+        ImageView mIvVideoThumb;
+        @BindView(R.id.tvVideoTitle)
+        TextView mTvVideoTitle;
 
         VideoViewHolder(View itemView) {
             super(itemView);

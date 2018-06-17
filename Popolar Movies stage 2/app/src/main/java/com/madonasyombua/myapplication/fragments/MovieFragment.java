@@ -42,6 +42,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 public class MovieFragment extends Fragment {
@@ -50,19 +52,18 @@ public class MovieFragment extends Fragment {
 
     private NestedScrollView mSvDetailsContainer;
     private Movie mMovie;
-    private ImageView mIvMovie;
-    private TextView mTvTitle;
-    private TextView mTvReleaseDateValue;
-    private TextView mTvDurationValue;
-    private TextView mTvVoteValue;
-    private TextView mTvPlotValue;
-    private MaterialRatingBar mRatingBar;
-    private FlowLayout mGenresContainer;
-    private RecyclerView mRvVideos;
-    private TextView mTvReviewsTitle;
-    private RecyclerView mRvReviews;
-    private FloatingActionButton mFbLike;
-
+    @BindView(R.id.ivMovie) ImageView mIvMovie;
+    @BindView(R.id.tvTitle) TextView mTvTitle;
+    @BindView(R.id.tvReleaseDateValue) TextView mTvReleaseDateValue;
+    @BindView(R.id.tvDurationValue) TextView mTvDurationValue;
+    @BindView(R.id.tvVoteValue) TextView mTvVoteValue;
+    @BindView(R.id.tvPlotValue) TextView mTvPlotValue;
+    @BindView(R.id.ratingBar) MaterialRatingBar mRatingBar;
+    @BindView(R.id.genresContainer) FlowLayout mGenresContainer;
+    @BindView(R.id.rvVideos) RecyclerView mRvVideos;
+    @BindView(R.id.tvReviewsTitle) TextView mTvReviewsTitle;
+    @BindView(R.id.rvReviews) RecyclerView mRvReviews;
+    FloatingActionButton mFbLike;
     private boolean mIsFavourite;
 
     public MovieFragment() {
@@ -94,8 +95,10 @@ public class MovieFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
 
+
+        View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
+        ButterKnife.bind(this,rootView);
         mSvDetailsContainer = rootView.findViewById(R.id.svDetailsContainer);
         mIsFavourite = isFavouriteMovie();
 
@@ -111,18 +114,7 @@ public class MovieFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void initializeViews(View rootView) {
-        mIvMovie = rootView.findViewById(R.id.ivMovie);
 
-        mTvTitle = rootView.findViewById(R.id.tvTitle);
-        mTvReleaseDateValue = rootView.findViewById(R.id.tvReleaseDateValue);
-        mTvDurationValue = rootView.findViewById(R.id.tvDurationValue);
-        mTvVoteValue = rootView.findViewById(R.id.tvVoteValue);
-        mTvPlotValue = rootView.findViewById(R.id.tvPlotValue);
-        mRatingBar = rootView.findViewById(R.id.ratingBar);
-        mGenresContainer = rootView.findViewById(R.id.genresContainer);
-        mRvVideos = rootView.findViewById(R.id.rvVideos);
-        mTvReviewsTitle = rootView.findViewById(R.id.tvReviewsTitle);
-        mRvReviews = rootView.findViewById(R.id.rvReviews);
         mFbLike = rootView.findViewById(R.id.fbLike);
 
         mFbLike.setOnClickListener (view -> switchFavouriteStatus());
