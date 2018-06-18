@@ -3,6 +3,14 @@
 ### Project Overview
 ![projects](https://user-images.githubusercontent.com/11560987/39330794-5bdd1b4c-4968-11e8-9271-631b147ec403.PNG)
 
+Libraries
+---------
+* [ExoPlayer](https://github.com/google/ExoPlayer)
+* [Jackson](https://github.com/FasterXML/jacksont)
+* [Retrofit](https://github.com/square/retrofit)
+* [Butter Knife](https://github.com/JakeWharton/butterknife)
+* [Logger](https://github.com/orhanobut/logger)
+* [Glide](https://github.com/bumptech/glide)
 
 
 ## The Movie App
