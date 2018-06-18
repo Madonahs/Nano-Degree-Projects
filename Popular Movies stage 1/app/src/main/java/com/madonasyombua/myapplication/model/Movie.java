@@ -1,3 +1,4 @@
+
 package com.madonasyombua.myapplication.model;
 
 import android.os.Parcel;
