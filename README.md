@@ -1,7 +1,19 @@
 <h1 align="center">Nano Degree Projects </h1>
 
-### Project Overview
-![projects](https://user-images.githubusercontent.com/11560987/39330794-5bdd1b4c-4968-11e8-9271-631b147ec403.PNG)
+## Project Overview
+* **Intermediate Android Developer Track. Grow with Google Scholarship**
+
+### POPULAR MOVIES, STAGE 1 and POPULAR MOVIES, STAGE 2
+Advanced Android App Development
+Make your apps more responsive, and create a total user experience with home screen widgets, third-party libraries, and more. Also, learn to deeply integrate rich media, test user interfaces, and publish to Google Play.
+
+### BAKING APP
+Gradle for Android and Java
+Learn how to customize your Gradle build, and explore advanced topics like: app testing, configuring free vs. paid apps, and creating and integrating libraries.
+
+### BUILD IT BIGGER
+Material Design for Android Developers
+Apply the design principles that define Android's visual language to your apps, using material design elements, transitions and graphics, across multiple form factors.
 
 Libraries
 ---------
@@ -25,3 +37,5 @@ Libraries
 
 
 
+## All Projects
+![projects](https://user-images.githubusercontent.com/11560987/39330794-5bdd1b4c-4968-11e8-9271-631b147ec403.PNG)
