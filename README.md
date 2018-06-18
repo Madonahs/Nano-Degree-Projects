@@ -1,6 +1,6 @@
 <h1 align="center">Nano Degree Projects </h1>
 
-## Project Overview
+## About
 * **Intermediate Android Developer Track. Grow with Google Scholarship**
 
 ### POPULAR MOVIES, STAGE 1 and POPULAR MOVIES, STAGE 2
