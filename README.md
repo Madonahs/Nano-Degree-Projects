@@ -24,6 +24,9 @@ Libraries
 * [Butter Knife](https://github.com/JakeWharton/butterknife)
 * [Logger](https://github.com/orhanobut/logger)
 * [Glide](https://github.com/bumptech/glide)
+* [Java 8+]
+
+
 
 
 ## The Movie App
