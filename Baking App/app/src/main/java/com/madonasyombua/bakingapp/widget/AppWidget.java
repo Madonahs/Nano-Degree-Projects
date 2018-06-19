@@ -1,9 +1,11 @@
-package com.madonasyombua.bakingapp;
+package com.madonasyombua.bakingapp.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+
+import com.madonasyombua.bakingapp.R;
 
 /**
  * Implementation of App Widget functionality.
