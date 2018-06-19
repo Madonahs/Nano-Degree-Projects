@@ -19,7 +19,6 @@ Libraries
 ---------
 * [Picasso](https://github.com/square/picasso)
 * [ExoPlayer](https://github.com/google/ExoPlayer)
-* [Jackson](https://github.com/FasterXML/jacksont)
 * [Retrofit](https://github.com/square/retrofit)
 * [Butter Knife](https://github.com/JakeWharton/butterknife)
 * [Logger](https://github.com/orhanobut/logger)
