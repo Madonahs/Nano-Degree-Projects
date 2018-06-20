@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svDetailsContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/topContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvVideo"
+                style="@style/CardViewItem"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="w,3:2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/todo"
+                    android:background="@drawable/movie_poster"
+                    android:scaleType="centerCrop"
+                    />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="@dimen/movie_image_detail_width_percent" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fbLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvVoteValue"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                app:layout_constraintTop_toTopOf="@+id/tvVoteValue"
+                app:srcCompat="@drawable/heart"
+                android:layout_marginRight="2dp" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cvVideo"
+                app:layout_constraintTop_toTopOf="@+id/cvVideo"
+                tools:text="@string/title"
+                android:layout_marginLeft="8dp" />
+
+            <TextView
+                android:id="@+id/tvVoteValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="@string/vote_average" />
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.MaterialRatingBar.RatingBar.Indicator.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:numStars="5"
+                android:rating="2.5"
+                android:stepSize="0.1"
+                app:layout_constraintBottom_toBottomOf="@+id/tvVoteValue"
+                app:layout_constraintEnd_toStartOf="@+id/fbLike"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/tvVoteValue"
+                app:layout_constraintTop_toTopOf="@+id/tvVoteValue"
+                app:layout_constraintWidth_max="100dp"
+                app:mrb_progressTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tvReleaseDateValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvVoteValue"
+                tools:text="@string/released" />
+
+            <TextView
+                android:id="@+id/tvDurationValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvReleaseDateValue"
+                tools:text="@string/runtime" />
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/genresContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:flChildSpacing="10dp"
+                app:flChildSpacingForLastRow="align"
+                app:flFlow="true"
+                app:flRowSpacing="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvDurationValue">
+
+            </com.nex3z.flowlayout.FlowLayout>
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvPlotLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/text"
+            app:layout_constraintEnd_toEndOf="@+id/topContainer"
+            app:layout_constraintStart_toStartOf="@+id/topContainer"
+            app:layout_constraintTop_toBottomOf="@+id/topContainer" />
+
+        <TextView
+            android:id="@+id/tvPlotValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlotLabel"
+            app:layout_constraintStart_toStartOf="@+id/tvPlotLabel"
+            app:layout_constraintTop_toBottomOf="@+id/tvPlotLabel"
+            tools:text="@string/brief" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvVideos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlotValue"
+            app:layout_constraintStart_toStartOf="@+id/tvPlotValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvPlotValue" />
+
+
+        <TextView
+            android:id="@+id/tvReviewsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reviews"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlotValue"
+            app:layout_constraintStart_toStartOf="@+id/tvPlotValue"
+            app:layout_constraintTop_toBottomOf="@+id/rvVideos" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvReviews"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlotValue"
+            app:layout_constraintHeight_max="300dp"
+            app:layout_constraintStart_toStartOf="@+id/tvPlotValue"
+            app:layout_constraintTop_toBottomOf="@+id/tvReviewsTitle" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
