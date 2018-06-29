@@ -23,6 +23,7 @@ Libraries
 * [Butter Knife](https://github.com/JakeWharton/butterknife)
 * [Logger](https://github.com/orhanobut/logger)
 * [Glide](https://github.com/bumptech/glide)
+* [RXJava](https://github.com/ReactiveX/RxJava)
 * [Java 8+]()
 
 
