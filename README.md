@@ -15,8 +15,8 @@ Learn how to customize your Gradle build, and explore advanced topics like: app 
 Material Design for Android Developers
 Apply the design principles that define Android's visual language to your apps, using material design elements, transitions and graphics, across multiple form factors.
 
-Libraries
----------
+Libraries 
+--------- 
 * [Picasso](https://github.com/square/picasso)
 * [ExoPlayer](https://github.com/google/ExoPlayer)
 * [Retrofit](https://github.com/square/retrofit)
