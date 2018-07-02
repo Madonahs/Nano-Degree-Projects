@@ -22,5 +22,5 @@ Your task is to create a Android Baking App that will allow Udacity’s resident
 
 One of the skills you will demonstrate in this project is how to handle unexpected input in your data -- professional developers often cannot expect polished JSON data when building an app.
 
-Click "Next" to see some sample mocks for the app!
+Click "Next" to see some sample mocks for the app!.
 `
