@@ -1,3 +1,8 @@
+<h1 align="center">Capstone Project On the App Store </h1>
+
+[![google-play-badge](https://user-images.githubusercontent.com/11560987/40274558-bf096688-5b9e-11e8-8bb9-56105415a934.png)](https://play.google.com/store/apps/details?id=com.madonasyombua.straighttalk)
+
+
 # Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
 
@@ -19,9 +24,7 @@ The Capstone project will give you the experience you need to own the full devel
 
 ## Submited proposal
 The app is on the App Store. 
-<h1 align="center">Straight Talk Foundation App </h1>
 
-[![google-play-badge](https://user-images.githubusercontent.com/11560987/40274558-bf096688-5b9e-11e8-8bb9-56105415a934.png)](https://play.google.com/store/apps/details?id=com.madonasyombua.straighttalk)
 
 ## Straight Talk Capstone Project
 Youth-centred adolescent sexuality and reproductive health program that incorporates a newspaper, a network of clubs, a radio/ TV show, and training programs.
