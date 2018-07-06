@@ -1,34 +1,57 @@
-package com.madonasyombua.bakingapp.model;
+package com.madonasyombua.bakingapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties (ignoreUnknown = true)
+
 public class Ingredients implements Parcelable {
-
     @JsonProperty("quantity")
-    private Double quantity;
+    private final int quantity;
     @JsonProperty("measure")
-    private String measure;
+    private final String measure;
     @JsonProperty("ingredient")
-    private String ingredient;
+    private final String ingredient;
 
-
-    //constructor
-    public Ingredients(Double quantity, String measure, String ingredient) {
-        this.quantity = quantity;
-        this.measure = measure;
-        this.ingredient = ingredient;
+    public Ingredients() {
+        this.quantity = 0;
+        this.measure = "";
+        this.ingredient = "";
     }
+
+    /**
+     * Describe the kinds of special objects contained in this Parcelable
+     * instance's marshaled representation. For example, if the object will
+     * include a file descriptor in the output of {@link #writeToParcel(Parcel, int)},
+     * the return value of this method must include the
+     * {@link #CONTENTS_FILE_DESCRIPTOR} bit.
+     *
+     * @return a bitmask indicating the set of special object types marshaled
+     * by this Parcelable object instance.
+     */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<Ingredients> CREATOR = new Parcelable.Creator<Ingredients>() {
+        @Override
+        public Ingredients createFromParcel(Parcel source) {
+            return new Ingredients(source);
+        }
+
+        @Override
+        public Ingredients[] newArray(int size) {
+            return new Ingredients[size];
+        }
+    };
 
     /**
      * get Quantity method
      * @return quantity
      */
-    public Double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
@@ -50,31 +73,11 @@ public class Ingredients implements Parcelable {
         return ingredient;
     }
 
-    /**
-     * Describe the kinds of special objects contained in this Parcelable
-     * instance's marshaled representation. For example, if the object will
-     * include a file descriptor in the output of {@link #writeToParcel(Parcel, int)},
-     * the return value of this method must include the
-     * {@link #CONTENTS_FILE_DESCRIPTOR} bit.
-     *
-     * @return a bitmask indicating the set of special object types marshaled
-     * by this Parcelable object instance.
-     */
-    public int describeContents() {
-        return 0;
+
+    @Override
+    public String toString() {
+        return String.format("Ingredients{quantity=%d, measure='%s', ingredient='%s'}", quantity, measure, ingredient);
     }
-    public final static Parcelable.Creator<Ingredients> CREATOR = new Creator<Ingredients>() {
-
-
-        public Ingredients createFromParcel(Parcel in) {
-            return new Ingredients(in);
-        }
-
-        public Ingredients[] newArray(int size) {
-            return (new Ingredients[size]);
-        }
-
-    };
 
     /**
      * Flatten this object in to a Parcel.
@@ -85,11 +88,10 @@ public class Ingredients implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(this.quantity);
+        dest.writeInt(this.quantity);
         dest.writeString(this.measure);
         dest.writeString(this.ingredient);
     }
-
     /**
      *  An unusual feature of Parcel is the ability to read and write active
      * objects.  For these objects the actual contents of the object is not
@@ -99,8 +101,8 @@ public class Ingredients implements Parcelable {
      * was originally written.  There are two forms of active objects available.</p>
      * @param in read
      */
-    protected Ingredients(Parcel in) {
-        this.quantity = in.readDouble();
+    private Ingredients(Parcel in) {
+        this.quantity = in.readInt();
         this.measure = in.readString();
         this.ingredient = in.readString();
     }

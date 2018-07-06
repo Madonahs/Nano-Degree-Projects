@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Baking App</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="description">Descriptions</string>
-    <string name="description_label">Label</string>
+    <string name="servings">Servings: %d</string>
+    <string name="recipe_image">Recipe image</string>
+    <string name="data_not_available">Data not Available.</string>
+    <string name="title_recipe_step_detail">Recipe Step Detail</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="step">Steps %d</string>
+    <string name="widget_recipe_key">widget_recipe_key</string>
+    <string name="add_to_widget_fab_label">Add To Widget</string>
+    <string name="options_fab_label">Options</string>
+    <string name="cake_display">Cake Display</string>
+    <string name="number">01.</string>
+    <string name="intro">Intro</string>
 </resources>
