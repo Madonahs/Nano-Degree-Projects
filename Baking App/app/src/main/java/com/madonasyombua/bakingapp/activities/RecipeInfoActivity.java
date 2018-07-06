@@ -64,7 +64,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mTwoPane = getResources().getBoolean(R.bool.twoPaneMode);
+        mTwoPane = false;
         if (mTwoPane) {
             if (savedInstanceState == null && !mRecipe.getSteps().isEmpty()) {
                 showStep(0);

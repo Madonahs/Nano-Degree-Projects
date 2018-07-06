@@ -153,7 +153,7 @@ public class RecipeFragment extends Fragment {
         recipesRecyclerView.setVisibility(View.GONE);
         recipesRecyclerView.setHasFixedSize(true);
 
-        boolean twoPaneMode = getResources().getBoolean(R.bool.twoPaneMode);
+        boolean twoPaneMode = false;
         if (twoPaneMode) {
             recipesRecyclerView.setLayoutManager(new GridLayoutManager(Objects.requireNonNull(getActivity()).getApplicationContext(), 3));
         } else {
