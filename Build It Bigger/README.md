@@ -20,3 +20,6 @@ Factor reusable Android functionality into an Android library
 Configure a multi-project build to compile your libraries and app
 Use the Gradle App Engine plugin to deploy a backend
 Configure an integration test suite that runs against the local App Engine development server`
+
+## Overview
+<img width="734" alt="sample" src="https://user-images.githubusercontent.com/11560987/42416723-7f0ac08a-823c-11e8-8599-72383c16857b.png">
