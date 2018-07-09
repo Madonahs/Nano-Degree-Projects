@@ -1,7 +1,3 @@
-
-## Overview
-<img width="734" alt="sample" src="https://user-images.githubusercontent.com/11560987/42416723-7f0ac08a-823c-11e8-8599-72383c16857b.png">
-
 # Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses

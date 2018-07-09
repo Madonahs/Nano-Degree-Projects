@@ -1,14 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
     repositories {
-        google()
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-        
+        classpath 'com.google.guava:guava:22.0'
+        classpath 'com.android.tools.build:gradle:3.1.3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,11 +16,36 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         jcenter()
+        google()
+    }
+}
+task startAppEngine (dependsOn: ":backend:appengineStart") {
+    doLast {
+        println "App Engine started"
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+task runAndroidTest (dependsOn: ":app:connectedAndroidTest") {
+    doLast {
+        println "Test reports can be found at project-folder/app/build/reports directory"
+    }
 }
+
+task stopAppEngine (dependsOn: ":backend:appengineStop") {
+    doLast {
+        println "App Engine stopped"
+    }
+}
+
+task myCustomTask (dependsOn: "startAppEngine") {
+    dependsOn "runAndroidTest"
+    mustRunAfter "startAppEngine"
+    doLast {
+        println "Cycle completed"
+    }
+    finalizedBy "stopAppEngine"
+}
+
+runAndroidTest.mustRunAfter "startAppEngine"
+runAndroidTest.finalizedBy "stopAppEngine"

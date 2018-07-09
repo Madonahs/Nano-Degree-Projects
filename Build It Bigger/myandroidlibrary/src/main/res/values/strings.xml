@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Android Library</string>
+    <string name="joke">Joke</string>
+    <string name="give_me_a_joke">Give Me a Joke</string>
+    <string name="have_fun">jokeTextView.setText(joke);</string>
+</resources>
