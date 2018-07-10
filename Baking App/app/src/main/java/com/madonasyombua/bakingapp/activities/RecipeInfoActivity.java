@@ -41,6 +41,8 @@ public class RecipeInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recipe_info);
+        ButterKnife.bind(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(RECIPE_KEY)) {
@@ -51,8 +53,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
             finish();
         }
 
-        setContentView(R.layout.activity_recipe_info);
-        ButterKnife.bind(this);
+ 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
