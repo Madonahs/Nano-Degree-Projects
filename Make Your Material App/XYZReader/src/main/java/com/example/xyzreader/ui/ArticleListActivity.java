@@ -208,4 +208,17 @@ public class ArticleListActivity extends ActionBarActivity implements
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
         }
     }
+
+    //Rubric
+    //TODO 1:App uses the Design Support library and its provided widget types (FloatingActionButton, AppBarLayout, SnackBar, etc).
+    //TODO 2:App uses CoordinatorLayout for the main Activity.
+    //TODO 3:App theme extends from AppCompat.
+    //TODO 4:App uses an AppBar and associated Toolbars.
+    //TODO 5:App provides a Floating Action Button for the most common action(s).
+    //TODO 6:App properly specifies elevations for app bars, FABs, and other elements specified in the Material Design specification.
+    //TODO 7:App has a consistent color theme defined in styles.xml. Color theme does not impact usability of the app.
+    //TODO 8:App provides sufficient space between text and surrounding elements.
+    //TODO 9: App uses images that are high quality, specific, and full bleed.
+    //TODO 10: App uses fonts that are either the Android defaults, are complementary, and aren't otherwise distracting.
+    //TODO 11: App utilizes stable release versions of all libraries, Gradle, and Android Studio.
 }
