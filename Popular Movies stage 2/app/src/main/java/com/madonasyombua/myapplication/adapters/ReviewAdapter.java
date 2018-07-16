@@ -50,10 +50,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         TextView mTvReviewContent;
 
         ReviewViewHolder(View itemView) {
-            super(itemView);
-
-            mTvReviewAuthor = itemView.findViewById(R.id.tvReviewAuthor);
-            mTvReviewContent = itemView.findViewById(R.id.tvReviewContent);
+            super(itemView);   
+        ButterKnife.bind(this, itemView);
         }
     }
 }
