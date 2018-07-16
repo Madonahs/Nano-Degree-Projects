@@ -19,7 +19,7 @@ import android.support.v7.graphics.Palette;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+//adapter class
 public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TITLE_TYPE = 1;
