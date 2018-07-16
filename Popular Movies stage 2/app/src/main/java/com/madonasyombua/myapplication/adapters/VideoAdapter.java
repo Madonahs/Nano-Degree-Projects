@@ -84,8 +84,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         VideoViewHolder(View itemView) {
             super(itemView);
 
-            mIvVideoThumb = itemView.findViewById(R.id.cvVideo);
-            mTvVideoTitle = itemView.findViewById(R.id.tvVideoTitle);
+            ButterKnife.bind(itemView);
+            
         }
     }
 }
