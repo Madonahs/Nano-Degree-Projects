@@ -40,7 +40,7 @@ import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirec
 import com.orhanobut.logger.Logger;
 
 /**
- * @author madon
+ * @author madona
  *
  */
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
