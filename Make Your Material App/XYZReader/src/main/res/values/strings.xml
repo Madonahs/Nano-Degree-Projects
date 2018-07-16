@@ -1,12 +1,20 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">XYZ Reader</string>
-    <string name="welcome_xyz_reader">Welcome to XYZ Reader!</string>
+    <string name="welcome_xyz_reader" tools:keep="@string/welcome_xyz_reader">Welcome to XYZ Reader!</string>
 
     <string name="action_refresh">Refresh</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_share">Share</string>
+    <string name="action_settings" tools:keep="@string/action_settings">Settings</string>
+    <string name="by_author">by %s</string>
+    <string name="intro_cards_content_desc">click to read the related article</string>
+    <string name="logo_content_desc">x y z reader</string>
+    <string name="decorative_image_no_content">@null</string>
+    <string name="share_article">Share an Article</string>
+    <string name="share_message">I\'m reading %s by %s on XYZ reader.</string>
+    <string name="share_title">Share an XYZ reader article</string>
+    <string name="empty_view_message">No articles to display. Check for a better connection and try to refresh the articles</string>
+    <string name="load_date_textview">passing today\'s dateTextView</string>
+    <string name="detail_photo">Detail Pic</string>
 
-    <string name="up">Up</string>
 
 </resources>

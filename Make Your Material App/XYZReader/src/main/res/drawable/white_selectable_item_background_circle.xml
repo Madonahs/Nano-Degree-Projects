@@ -14,9 +14,8 @@
   limitations under the License.
   -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:enterFadeDuration="100"
-    android:exitFadeDuration="100">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:enterFadeDuration="100"
+    android:exitFadeDuration="100" tools:keep="@drawable/white_selectable_item_background_circle">
     <item android:state_pressed="true">
         <shape android:shape="oval">
             <solid android:color="#3fff" />

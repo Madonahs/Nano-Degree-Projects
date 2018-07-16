@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,6 +24,7 @@ public class RemoteEndpointUtil {
         try {
             itemsJson = fetchPlainText();
         } catch (IOException e) {
+
             Log.e(TAG, "Error fetching items JSON", e);
             return null;
         }
@@ -50,6 +52,6 @@ public class RemoteEndpointUtil {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        return Objects.requireNonNull(response.body()).string();
     }
 }

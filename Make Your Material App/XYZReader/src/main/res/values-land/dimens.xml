@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="article_body_item_padding" tools:keep="@dimen/article_body_item_padding">36dp</dimen>
+</resources>

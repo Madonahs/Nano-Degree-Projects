@@ -1,51 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:elevation="@dimen/card_rv_elevation"
+    android:layout_margin="@dimen/card_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    tools:targetApi="lollipop">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/list_item_constraint_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!--suppress AndroidLintContentDescription -->
-        <com.example.xyzreader.ui.DynamicHeightNetworkImageView
+        <ImageView
             android:id="@+id/thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@color/photo_placeholder" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/intro_cards_content_desc"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1.5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/list_item_placeholder_color" />
 
         <TextView
             android:id="@+id/article_title"
-            style="@style/TextAppearance.AppCompat.Subhead"
-            android:layout_width="match_parent"
+            style="@style/ArticleTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:layout_marginEnd="@dimen/card_lateral_margin"
+            android:layout_marginStart="@dimen/card_lateral_margin"
+            android:layout_marginTop="@dimen/card_top_margin"
             android:fontFamily="@font/raleway"
-            android:maxLines="4"
-            android:paddingBottom="4dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="16dp"
-            android:textColor="@color/ltgray" />
+            android:padding="@dimen/card_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
 
         <TextView
-            android:id="@+id/article_subtitle"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_width="match_parent"
+            android:id="@+id/article_date"
+            style="@style/ArticleSubtitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:textColor="#6000"
-            android:maxLines="2"
-            android:ellipsize="end" />
-    </LinearLayout>
+            android:layout_marginStart="@dimen/card_lateral_margin"
+            android:layout_marginTop="@dimen/card_top_margin"
+            android:paddingBottom="@dimen/date_padding_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/article_title" />
+
+        <TextView
+            android:id="@+id/article_author"
+            style="@style/ArticleSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/card_author_padding_bottom"
+            app:layout_constraintStart_toStartOf="@+id/article_date"
+            app:layout_constraintTop_toBottomOf="@+id/article_date" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

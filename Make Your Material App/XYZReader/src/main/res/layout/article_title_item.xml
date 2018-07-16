@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detail_data_cl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@color/title_detail_default_background">
+
+    <TextView
+        android:id="@+id/detail_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/ArticleDetailTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/article_title_margin_start"
+        android:layout_marginTop="@dimen/article_title_margin"
+        style="@style/ArticleDate"
+        android:paddingBottom="@dimen/article_title_padding_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+
+    <TextView
+        android:id="@+id/detail_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/article_title_margin"
+        style="@style/ArticleAuthor"
+        app:layout_constraintStart_toEndOf="@+id/detail_date"
+        app:layout_constraintTop_toTopOf="@+id/detail_date" />
+</android.support.constraint.ConstraintLayout>

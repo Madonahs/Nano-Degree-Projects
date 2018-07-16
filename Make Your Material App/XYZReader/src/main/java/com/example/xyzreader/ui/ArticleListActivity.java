@@ -1,34 +1,51 @@
 package com.example.xyzreader.ui;
 
-import android.app.LoaderManager;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.Loader;
+import android.support.v4.app.LoaderManager;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
+
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
-import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
+import com.example.xyzreader.utils.Misc;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -36,81 +53,112 @@ import java.util.GregorianCalendar;
  * touched, lead to a {@link ArticleDetailActivity} representing item details. On tablets, the
  * activity presents a grid of items as cards.
  */
-@SuppressWarnings("deprecation")
-public class ArticleListActivity extends ActionBarActivity implements
+public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String TAG = ArticleListActivity.class.toString();
-    private Toolbar mToolbar;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+    private static final String TAG = ArticleListActivity.class.getSimpleName();
+    private static final String EXTRA_ID = "article selected extra id";
+    private static final String RV_POSITION ="rv position";
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
+    private View mParentLayout;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.empty_view)
+    TextView mEmptyView;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    private int rvPosition;
+    @SuppressLint("SimpleDateFormat")
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
     // Use default locale format
-    private SimpleDateFormat outputFormat = new SimpleDateFormat();
+    @SuppressLint("SimpleDateFormat")
+    private final SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private final GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
+
+    private BroadcastReceiver mRefreshingReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
+        ButterKnife.bind(this);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        mSwipeRefreshLayout.setOnRefreshListener(() -> refreshItem());
+        getSupportLoaderManager().initLoader(0, null, this);
+        mRefreshingReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
+                    mSwipeRefreshLayout.setRefreshing(false);
 
-        final View toolbarContainerView = findViewById(R.id.toolbar_container);
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        getLoaderManager().initLoader(0, null, this);
+                }
+            }
+        };
 
         if (savedInstanceState == null) {
-            refresh();
+            refreshItem();
+        } else {
+            rvPosition = savedInstanceState.getInt(RV_POSITION);
         }
     }
 
-    private void refresh() {
+    private void refreshItem() {
+        mSwipeRefreshLayout.setRefreshing(true);
         startService(new Intent(this, UpdaterService.class));
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         registerReceiver(mRefreshingReceiver,
                 new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         unregisterReceiver(mRefreshingReceiver);
     }
 
-    private boolean mIsRefreshing = false;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
 
-    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-                updateRefreshingUI();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.refresh) {
+            refreshItem();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        return ArticleLoader.newAllArticlesInstance(this);
+
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
+        if (cursor.getCount() > 0) {
+            mEmptyView.setVisibility(View.GONE);
+        } else {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            NetworkInfo ni = Objects.requireNonNull(cm).getActiveNetworkInfo();
+            if (ni == null || !ni.isConnected()) {
+                mEmptyView.setVisibility(View.VISIBLE);
             }
         }
-    };
-
-    private void updateRefreshingUI() {
-        mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return ArticleLoader.newAllArticlesInstance(this);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         Adapter adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
@@ -118,18 +166,22 @@ public class ArticleListActivity extends ActionBarActivity implements
         StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
+        mRecyclerView.scrollToPosition(rvPosition);
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         mRecyclerView.setAdapter(null);
     }
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
-        private Cursor mCursor;
+        private final Cursor mCursor;
+        private final ConstraintSet mConstraintSet;
+        private final int DEFAULT_HEIGHT = 1;
 
-        Adapter(Cursor cursor) {
-            mCursor = cursor;
+        Adapter(Cursor mCursor) {
+            this.mCursor = mCursor;
+            mConstraintSet = new ConstraintSet();
         }
 
         @Override
@@ -138,16 +190,17 @@ public class ArticleListActivity extends ActionBarActivity implements
             return mCursor.getLong(ArticleLoader.Query._ID);
         }
 
+        @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(R.layout.list_item_article, parent, false);
             final ViewHolder vh = new ViewHolder(view);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
-                }
+            view.setOnClickListener(view1 -> {
+                Intent intent = new Intent(ArticleListActivity.this, ArticleDetailActivity.class);
+                long id = getItemId(vh.getAdapterPosition());
+                intent.putExtra(EXTRA_ID, id);
+                startActivity(intent);
+
             });
             return vh;
         }
@@ -158,35 +211,41 @@ public class ArticleListActivity extends ActionBarActivity implements
                 return dateFormat.parse(date);
             } catch (ParseException ex) {
                 Log.e(TAG, ex.getMessage());
-                Log.i(TAG, "passing today's date");
+                Misc.makeSnackBar(getApplicationContext(), mParentLayout, getString(R.string.load_date_textview), true);
                 return new Date();
             }
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
             Date publishedDate = parsePublishedDate();
+            String author = mCursor.getString(ArticleLoader.Query.AUTHOR);
+            holder.authorTextView.setText(String.format(getString(R.string.by_author), author));
             if (!publishedDate.before(START_OF_EPOCH.getTime())) {
 
-                holder.subtitleView.setText(Html.fromHtml(
+                holder.dateTextView.setText(
                         DateUtils.getRelativeTimeSpanString(
                                 publishedDate.getTime(),
                                 System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                                DateUtils.FORMAT_ABBREV_ALL).toString()
-                                + "<br/>" + " by "
-                                + mCursor.getString(ArticleLoader.Query.AUTHOR)));
+                                DateUtils.FORMAT_ABBREV_ALL).toString());
             } else {
-                holder.subtitleView.setText(Html.fromHtml(
-                        outputFormat.format(publishedDate)
-                        + "<br/>" + " by "
-                        + mCursor.getString(ArticleLoader.Query.AUTHOR)));
+                holder.dateTextView.setText(
+                        outputFormat.format(publishedDate));
             }
-            holder.thumbnailView.setImageUrl(
-                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
-                    ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+            String url = mCursor.getString(ArticleLoader.Query.THUMB_URL);
+            //aspect ratio as single number, as from query
+            float aspectRatio = mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO);
+
+            //aspect ratio as proportion width:height
+            String ratio = String.format(Locale.ENGLISH, "%.2f:%d", aspectRatio, DEFAULT_HEIGHT);
+            mConstraintSet.clone(holder.constraintLayout);
+            mConstraintSet.setDimensionRatio(holder.thumbnailView.getId(), ratio);
+            mConstraintSet.applyTo(holder.constraintLayout);
+            Picasso.get().load(url).placeholder(R.drawable.ic_library_books_black_24dp)
+                    .error(R.drawable.ic_library_books_black_24dp).into(holder.thumbnailView);
+
         }
 
         @Override
@@ -196,28 +255,33 @@ public class ArticleListActivity extends ActionBarActivity implements
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        DynamicHeightNetworkImageView thumbnailView;
+        @BindView(R.id.thumbnail)
+        ImageView thumbnailView;
+        @BindView(R.id.article_title)
         TextView titleView;
-        TextView subtitleView;
+        @BindView(R.id.article_date)
+        TextView dateTextView;
+        @BindView(R.id.article_author)
+        TextView authorTextView;
+        @BindView(R.id.list_item_constraint_layout)
+        ConstraintLayout constraintLayout;
 
         ViewHolder(View view) {
             super(view);
-            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
-            titleView = (TextView) view.findViewById(R.id.article_title);
-            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
+            ButterKnife.bind(this, itemView);
         }
     }
 
-    //Rubric
-    //TODO 1:App uses the Design Support library and its provided widget types (FloatingActionButton, AppBarLayout, SnackBar, etc).
-    //TODO 2:App uses CoordinatorLayout for the main Activity.
-    //TODO 3:App theme extends from AppCompat.
-    //TODO 4:App uses an AppBar and associated Toolbars.
-    //TODO 5:App provides a Floating Action Button for the most common action(s).
-    //TODO 6:App properly specifies elevations for app bars, FABs, and other elements specified in the Material Design specification.
-    //TODO 7:App has a consistent color theme defined in styles.xml. Color theme does not impact usability of the app.
-    //TODO 8:App provides sufficient space between text and surrounding elements.
-    //TODO 9: App uses images that are high quality, specific, and full bleed.
-    //TODO 10: App uses fonts that are either the Android defaults, are complementary, and aren't otherwise distracting.
-    //TODO 11: App utilizes stable release versions of all libraries, Gradle, and Android Studio.
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mRecyclerView != null) {
+            StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) mRecyclerView.getLayoutManager();
+            if (manager != null && mRecyclerView.getAdapter() != null) {
+                int[] positions = new int[manager.getSpanCount()];
+                manager.findFirstCompletelyVisibleItemPositions(positions);
+                outState.putInt(RV_POSITION,positions[0]);
+            }
+        }
+    }
 }

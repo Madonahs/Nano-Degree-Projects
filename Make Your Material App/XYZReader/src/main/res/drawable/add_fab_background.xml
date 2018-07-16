@@ -14,10 +14,12 @@
   limitations under the License.
   -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:keep="@drawable/add_fab_background">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/theme_accent" />
+            <solid android:color="@color/colorAccent" />
         </shape>
     </item>
     <item android:drawable="@drawable/white_selectable_item_background_circle" />

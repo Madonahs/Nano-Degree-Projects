@@ -1,5 +1,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="rectangle"
+    tools:keep="@drawable/photo_background_protection">
     <gradient
         android:angle="-90"
         android:startColor="#3000"

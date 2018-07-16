@@ -1,28 +1,58 @@
-<!-- File created by the Android Action Bar Style Generator
 
-     Copyright (C) 2012 readyState Software Ltd
+<resources>
 
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-  
-          http://www.apache.org/licenses/LICENSE-2.0
-  
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Theme.Bacon" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
     </style>
 
-    <style name="Theme.Bacon.Detail">
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+    <style name="DetailAppTheme" parent ="AppTheme">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
+
+    <style name="ArticleTitle">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textSize">@dimen/article_title_text_size</item>
+        <item name="android:textColor">@color/article_card_view_text</item>
+    </style>
+
+    <style name="ArticleSubtitle">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textSize">@dimen/article_subtitle_text_size</item>
+        <item name="android:textColor">@color/article_card_view_sub</item>
+    </style>
+
+    <style name="ArticleDetailTitle">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textSize">@dimen/article_detail_title</item>
+        <item name="android:padding">@dimen/article_title_padding</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/title_detail_text_color</item>
+    </style>
+
+    <style name="ArticleDate">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textSize">@dimen/article_detail_date</item>
+        <item name="android:textColor">@color/detail_date_color</item>
+    </style>
+    <style name="ArticleAuthor">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="android:textSize">@dimen/article_detail_author</item>
+        <item name="android:textColor">@color/title_detail_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+   <style name="ArticleBody">
+       <item name="android:fontFamily">@font/raleway</item>
+       <item name="android:textSize">@dimen/article_body_text_size</item>
+       <item name="android:paddingTop">@dimen/article_body_top_padding</item>
+       <item name="android:paddingStart">@dimen/article_body_lateral_padding</item>
+       <item name="android:paddingEnd">@dimen/article_body_lateral_padding</item>
+   </style>
 
 </resources>

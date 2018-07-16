@@ -1,7 +1,17 @@
 <resources>
-    <!-- detail -->
-    <dimen name="detail_title_text_size">42sp</dimen>
-    <dimen name="detail_body_text_size">20sp</dimen>
-    <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.3</item>
-    <dimen name="fab_margin">24dp</dimen>
+
+    <dimen name="rv_margin_top">24dp</dimen>
+    <dimen name="article_width">500dp</dimen>
+    <dimen name="article_margin_top">200dp</dimen>
+    <dimen name="toolbar_detail_height">400dp</dimen>
+    <dimen name="fab_layout_margin">16dp</dimen>
+    <dimen name="article_body_lateral_padding">24dp</dimen>
+    <dimen name="card_lateral_margin">16dp</dimen>
+    <!-- fonts -->
+    <dimen name="article_detail_title">28sp</dimen>
+    <dimen name="article_detail_date">18sp</dimen>
+    <dimen name="article_detail_author">18sp</dimen>
+    <dimen name="article_body_text_size">16sp</dimen>
+    <dimen name="empty_view_text_size">21sp</dimen>
+    <dimen name="empty_view_padding">36dp</dimen>
 </resources>

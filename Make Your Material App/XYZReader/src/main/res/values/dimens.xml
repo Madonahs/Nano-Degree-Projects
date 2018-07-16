@@ -1,11 +1,46 @@
-<resources>
-    <!-- detail -->
-    <dimen name="detail_title_text_size">32sp</dimen>
-    <dimen name="detail_body_text_size">22sp</dimen>
-    <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <dimen name="fab_elevation">2dp</dimen>
-    <dimen name="fab_press_translation_z">6dp</dimen>
-    <dimen name="fab_margin">24dp</dimen>
+
+    <dimen name="rv_margin_top">16dp</dimen>
+    <dimen name="article_body_item_padding" tools:keep="@dimen/article_body_item_padding">16dp</dimen>
+    <dimen name="toolbar_detail_height">180dp</dimen>
+    <dimen name="toolbar_main">120dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="app_bar_elevation">4dp</dimen>
+    <dimen name="toolbar_detail_padding_top">24dp</dimen>
+    <dimen name="card_rv_elevation">4dp</dimen>
+
+    <dimen name="article_body_lateral_padding">16dp</dimen>
+    <dimen name="article_body_top_padding">4dp</dimen>
+    <dimen name="detail_activity_padding_bottom">16dp</dimen>
+    <dimen name="logo_margin_bottom">16dp</dimen>
+
+    <dimen name="article_title_margin_start">16dp</dimen>
+    <dimen name="article_title_margin">8dp</dimen>
+    <dimen name="article_title_padding_bottom">16dp</dimen>
+
+    <dimen name="article_intro_padding_bottom">24dp</dimen>
+    <dimen name="article_detail_padding_bottom">24dp</dimen>
+    <dimen name="article_title_padding">16dp</dimen>
+
+    <dimen name="list_side_margin">16dp</dimen>
+
+    <!--Article Item CardView dimens -->
+    <dimen name="article_title_text_size">16sp</dimen>
+    <dimen name="article_subtitle_text_size">14sp</dimen>
+    <dimen name="card_lateral_margin">8dp</dimen>
+    <dimen name="card_top_margin">8dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="card_author_padding_bottom">16dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_margin">4dp</dimen>
+    <dimen name="date_padding_bottom">4dp</dimen>
+    <!-- fonts -->
+    <dimen name="article_detail_title">24sp</dimen>
+    <dimen name="article_detail_date">16sp</dimen>
+    <dimen name="article_detail_author">16sp</dimen>
+    <dimen name="article_body_text_size">14sp</dimen>
+    <dimen name="empty_view_text_size">16sp</dimen>
+    <dimen name="empty_view_padding" tools:keep="@dimen/empty_view_padding">24dp</dimen>
 
 </resources>

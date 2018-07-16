@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:paddingBottom="@dimen/detail_activity_padding_bottom">
+    android:paddingBottom="@dimen/detail_activity_padding_bottom"
+    android:layout_marginBottom="@dimen/article_detail_padding_bottom">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -18,10 +19,10 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/article_detail_photo"
@@ -29,10 +30,11 @@
                 android:layout_height="@dimen/toolbar_detail_height"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:layout_collapseMode="pin"
+                android:contentDescription="@string/decorative_image_no_content"
                 android:elevation="@dimen/app_bar_elevation"
                 android:src="@drawable/ic_library_books_black_24dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/detail_photo" />
+                tools:targetApi="lollipop" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_detail"
@@ -40,28 +42,31 @@
                 android:layout_height="match_parent"
                 android:paddingTop="@dimen/toolbar_detail_padding_top"
                 android:elevation="@dimen/app_bar_elevation"
-                app:layout_collapseMode="parallax"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                tools:targetApi="lollipop" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fitsSystemWindows="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_marginTop="@dimen/article_margin_top"
+        android:elevation="@dimen/app_bar_elevation"
+        android:layout_width="@dimen/article_width"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent"
+        tools:targetApi="lollipop" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_share"
         android:elevation="@dimen/fab_elevation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="@dimen/article_detail_padding_bottom"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_layout_margin"
         android:src="@drawable/ic_share"
         app:layout_anchor="@id/pager"
-        app:layout_anchorGravity="bottom|end"
+        app:layout_anchorGravity="bottom|right|end"
         tools:targetApi="lollipop" />
 
 </android.support.design.widget.CoordinatorLayout>
