@@ -84,7 +84,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         VideoViewHolder(View itemView) {
             super(itemView);
 
-            ButterKnife.bind(itemView);
+           
+            ButterKnife.bind(this, itemView);
             
         }
     }
