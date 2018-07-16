@@ -21,3 +21,6 @@ XYZ Reader: A mock RSS feed reader featuring banner photos and headlines. Downlo
 The app is currently functional, and work in most cases for most users.
 
 Your job will be to take the user feedback in the UI Review node, and implement changes that will improve the UI and make it conform to Material Design.
+
+
+<img src='https://user-images.githubusercontent.com/11560987/42767635-164d74cc-88e3-11e8-82d4-3a1a47dab79a.jpg'  width='500' />
