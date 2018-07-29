@@ -1,7 +1,7 @@
 <h1 align="center">Capstone Project Final Stage </h1>
 
-[![google-play-badge](https://user-images.githubusercontent.com/11560987/40274558-bf096688-5b9e-11e8-8bb9-56105415a934.png)](https://play.google.com/store/apps/details?id=com.madonasyombua.straighttalk)
 
+![1024px](https://user-images.githubusercontent.com/11560987/43366167-d80fb118-92fe-11e8-86a2-0b517a99fbb4.png)
 
 # Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
