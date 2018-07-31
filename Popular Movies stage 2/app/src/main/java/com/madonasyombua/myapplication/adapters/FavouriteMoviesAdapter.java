@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2018 Madonah Syombua
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.madonasyombua.myapplication.adapters;
 
 import android.content.Intent;
@@ -17,7 +32,6 @@ import com.madonasyombua.myapplication.activities.MovieListDetail;
 import com.madonasyombua.myapplication.fragments.MovieFragment;
 import com.madonasyombua.myapplication.helpers.MovieContract;
 import com.madonasyombua.myapplication.interfaces.DBUpdateListener;
-import com.madonasyombua.myapplication.model.Genre;
 import com.madonasyombua.myapplication.model.Movie;
 import com.madonasyombua.myapplication.model.MovieReview;
 import com.madonasyombua.myapplication.model.VideoResults;
@@ -30,7 +44,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-
+/**
+ * @author madona syombua
+ *
+ */
 public class FavouriteMoviesAdapter  extends RecyclerView.Adapter<FavouriteMoviesAdapter.MovieViewHolder> {
     private final MainActivity mParentActivity;
     private final boolean mTwoPane;
