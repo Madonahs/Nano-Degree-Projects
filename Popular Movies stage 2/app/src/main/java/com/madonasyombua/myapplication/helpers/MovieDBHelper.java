@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * @author madon
+ * @author madona
  */
 class MovieDBHelper extends SQLiteOpenHelper {
 
