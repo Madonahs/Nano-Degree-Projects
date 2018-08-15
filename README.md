@@ -32,7 +32,7 @@ Budgeting Buddy is a simple App meant to help maintain your monthly and daily bu
 
 ## The Movie App
 
-### For the Movie App Project you need to have the Api_Key for it to run, get the key from [TMDB](https://www.themoviedb.org/). Add it on the gradle.properties.
+**For the Movie App Project you need to have the Api_Key for it to run, get the key from [TMDB](https://www.themoviedb.org/). Add it on the gradle.properties.**
 
 <img src="https://user-images.githubusercontent.com/11560987/41365655-9741984a-6eff-11e8-879d-83311a7d064d.jpg" width="380"/> <img src="https://user-images.githubusercontent.com/11560987/41365587-6216b5ce-6eff-11e8-9fed-c8418aa26bed.jpg" width="380"/> 
 
