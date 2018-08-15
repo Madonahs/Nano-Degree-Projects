@@ -12,8 +12,15 @@ Gradle for Android and Java
 Learn how to customize your Gradle build, and explore advanced topics like: app testing, configuring free vs. paid apps, and creating and integrating libraries.
 
 ### BUILD IT BIGGER
+In this project, you will create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints. The finished app will consist of four modules. A Java library that provides jokes, a Google Cloud Endpoints (GCE) project that serves those jokes, an Android Library containing an activity for displaying jokes, and an Android app that fetches jokes from the GCE module and passes them to the Android Library for display.
+
+
+### Make Your App Material
+In this project, you will redesign an app to follow the Material Design guidelines and translate a set of static design mocks to a living and breathing app.
+
 Material Design for Android Developers
 Apply the design principles that define Android's visual language to your apps, using material design elements, transitions and graphics, across multiple form factors.
+
 
 ### Capstone Final Project
 **Budgeting Buddy**
