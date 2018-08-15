@@ -1,7 +1,7 @@
 <h1 align="center">Nano Degree Projects </h1>
 
 ## About
-* **Intermediate Android Developer Track. Grow with Google Scholarship**
+ **Intermediate Android Developer Track. Grow with Google Scholarship**
 
 ### POPULAR MOVIES, STAGE 1 and POPULAR MOVIES, STAGE 2
 Advanced Android App Development
