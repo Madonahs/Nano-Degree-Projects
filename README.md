@@ -23,20 +23,6 @@ Budgeting Buddy is a simple App meant to help maintain your monthly and daily bu
 ![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
 
 
-Libraries 
---------- 
-* [Picasso](https://github.com/square/picasso)
-* [ExoPlayer](https://github.com/google/ExoPlayer)
-* [Retrofit](https://github.com/square/retrofit)
-* [Butter Knife](https://github.com/JakeWharton/butterknife)
-* [Logger](https://github.com/orhanobut/logger)
-* [Glide](https://github.com/bumptech/glide)
-* [RXJava](https://github.com/ReactiveX/RxJava)
-* [Java 8+]()
-
-
-
-
 ## The Movie App
 
 ### For the Movie App Project you need to have the Api_Key for it to run, get the key from [TMDB](https://www.themoviedb.org/). Add it on the gradle.properties.
@@ -52,6 +38,17 @@ Libraries
 
 ## Make Your App Material 
 <img src='https://user-images.githubusercontent.com/11560987/42767635-164d74cc-88e3-11e8-82d4-3a1a47dab79a.jpg'  width='500' />
+
+Libraries 
+--------- 
+* [Picasso](https://github.com/square/picasso)
+* [ExoPlayer](https://github.com/google/ExoPlayer)
+* [Retrofit](https://github.com/square/retrofit)
+* [Butter Knife](https://github.com/JakeWharton/butterknife)
+* [Logger](https://github.com/orhanobut/logger)
+* [Glide](https://github.com/bumptech/glide)
+* [RXJava](https://github.com/ReactiveX/RxJava)
+* [Java 8+]()
 
 
 ## All Projects
