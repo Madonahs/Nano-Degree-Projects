@@ -44,9 +44,8 @@ Apply the design principles that define Android's visual language to your apps, 
 ## The Sandwich Club
 Building a layout and populating its fields from data received as JSON is a common task for Android Developers. Although JSON parsing is usually done using libraries, writing the JSON parsing for this project will help you to better understand how it is processed.
 
-<img src='https://user-images.githubusercontent.com/11560987/41324819-7b0a4eca-6e7c-11e8-96c4-1e02742f5f37.jpeg'  width='500' />
 
-
+<img src="https://user-images.githubusercontent.com/11560987/44217727-c4b3e100-a13d-11e8-8acc-852cd8019cd2.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44217733-c5e50e00-a13d-11e8-8466-a691a13be9ec.jpg" width="380"/> 
 
 Libraries 
 --------- 
