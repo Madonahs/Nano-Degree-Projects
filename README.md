@@ -7,7 +7,7 @@
 
 **Budgeting Buddy**
 
-Budgeting Buddy is a simple App meant to help maintain your monthly and daily budgets, the app is free and you should be able to enjoy all feature without problems. To set up your wallet visit the income section and add all you want to spend.
+Budgeting Buddy is a simple App meant to help maintain your monthly and daily budgets, the app is free and you should be able to enjoy all feature without problems. To set up your wallet visit the income section and add amount.
 
 ![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
 
