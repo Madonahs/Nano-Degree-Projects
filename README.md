@@ -2,7 +2,9 @@
 
 ## About
  **Intermediate Android Developer Track. Grow with Google Scholarship**
+ 
 ### Capstone Final Project
+
 **Budgeting Buddy**
 
 Budgeting Buddy is a simple App meant to help maintain your monthly and daily budgets, the app is free and you should be able to enjoy all feature without problems. To set up your wallet visit the income section and all you want to spend.
@@ -16,12 +18,16 @@ Make your apps more responsive, and create a total user experience with home scr
 
 **For the Movie App Project you need to have the Api_Key for it to run, get the key from [TMDB](https://www.themoviedb.org/). Add it on the gradle.properties.**
 
+#### Display
+
 <img src="https://user-images.githubusercontent.com/11560987/41365655-9741984a-6eff-11e8-879d-83311a7d064d.jpg" width="380"/> <img src="https://user-images.githubusercontent.com/11560987/41365587-6216b5ce-6eff-11e8-9fed-c8418aa26bed.jpg" width="380"/> 
 
 
 ### BAKING APP
 Gradle for Android and Java
 Learn how to customize your Gradle build, and explore advanced topics like: app testing, configuring free vs. paid apps, and creating and integrating libraries.
+
+##### Display
 
 <img src="https://user-images.githubusercontent.com/11560987/44215804-055d2b80-a139-11e8-8147-fd8d34ef9563.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44215806-068e5880-a139-11e8-9ce8-1156563507ae.jpg" width="380"/> 
 
@@ -38,12 +44,15 @@ In this project, you will redesign an app to follow the Material Design guidelin
 Material Design for Android Developers
 Apply the design principles that define Android's visual language to your apps, using material design elements, transitions and graphics, across multiple form factors.
 
+#### Display
+
 <img src="https://user-images.githubusercontent.com/11560987/44216437-8d900080-a13a-11e8-8865-856344d91340.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44216440-8ec12d80-a13a-11e8-87be-3fd30df30a60.jpg" width="380"/> 
 
 
 ## The Sandwich Club
 Building a layout and populating its fields from data received as JSON is a common task for Android Developers. Although JSON parsing is usually done using libraries, writing the JSON parsing for this project will help you to better understand how it is processed.
 
+#### Display
 
 <img src="https://user-images.githubusercontent.com/11560987/44217727-c4b3e100-a13d-11e8-8acc-852cd8019cd2.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44217733-c5e50e00-a13d-11e8-8466-a691a13be9ec.jpg" width="380"/> 
 
