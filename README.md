@@ -38,7 +38,7 @@ In this project, you will redesign an app to follow the Material Design guidelin
 Material Design for Android Developers
 Apply the design principles that define Android's visual language to your apps, using material design elements, transitions and graphics, across multiple form factors.
 
-<img src='https://user-images.githubusercontent.com/11560987/42767635-164d74cc-88e3-11e8-82d4-3a1a47dab79a.jpg'  width='500' />
+<img src="https://user-images.githubusercontent.com/11560987/44216437-8d900080-a13a-11e8-8865-856344d91340.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44216440-8ec12d80-a13a-11e8-87be-3fd30df30a60.jpg" width="380"/> 
 
 
 ## The Sandwich Club
