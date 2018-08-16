@@ -7,7 +7,7 @@
 
 **Budgeting Buddy**
 
-Budgeting Buddy is a simple App meant to help maintain your monthly and daily budgets, the app is free and you should be able to enjoy all feature without problems. To set up your wallet visit the income section and all you want to spend.
+Budgeting Buddy is a simple App meant to help maintain your monthly and daily budgets, the app is free and you should be able to enjoy all feature without problems. To set up your wallet visit the income section and add all you want to spend.
 
 ![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
 
@@ -24,8 +24,9 @@ Make your apps more responsive, and create a total user experience with home scr
 
 
 ### BAKING APP
-Gradle for Android and Java
-Learn how to customize your Gradle build, and explore advanced topics like: app testing, configuring free vs. paid apps, and creating and integrating libraries.
+You will productionize an app, taking it from a functional state to a production-ready state. This will involve finding and handling error cases, adding accessibility features, allowing for localization, adding a widget, and adding a library.
+
+As a working Android developer, you often have to create and implement apps where you are responsible for designing and planning the steps you need to take to create a production-ready app. Unlike Popular Movies where we gave you an implementation guide, it will be up to you to figure things out for the Baking App.
 
 ##### Display
 
