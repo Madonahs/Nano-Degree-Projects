@@ -23,6 +23,8 @@ Make your apps more responsive, and create a total user experience with home scr
 Gradle for Android and Java
 Learn how to customize your Gradle build, and explore advanced topics like: app testing, configuring free vs. paid apps, and creating and integrating libraries.
 
+<img src="https://user-images.githubusercontent.com/11560987/44215804-055d2b80-a139-11e8-8147-fd8d34ef9563.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44215806-068e5880-a139-11e8-9ce8-1156563507ae.jpg" width="380"/> 
+
 ### BUILD IT BIGGER
 
 In this project, you will create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints. The finished app will consist of four modules. A Java library that provides jokes, a Google Cloud Endpoints (GCE) project that serves those jokes, an Android Library containing an activity for displaying jokes, and an Android app that fetches jokes from the GCE module and passes them to the Android Library for display.
