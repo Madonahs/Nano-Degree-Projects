@@ -13,7 +13,7 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 
 import java.util.List;
-
+//starter code by Udacity
 public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = DetailActivity.class.getName();
