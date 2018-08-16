@@ -40,6 +40,7 @@ public class DetailActivity extends AppCompatActivity {
             closeOnError();
         }
 
+        assert intent != null;
         int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
         if (position == DEFAULT_POSITION) {
             // EXTRA_POSITION not found in intent
@@ -53,11 +54,6 @@ public class DetailActivity extends AppCompatActivity {
         try{
 
         sandwich = JsonUtils.parseSandwichJson(json);
-        if (sandwich == null) {
-            // Sandwich data unavailable
-            closeOnError();
-            return;
-        }
             populateUI();
             Picasso.with(this)
                     .load(sandwich.getImage())
@@ -103,15 +99,12 @@ public class DetailActivity extends AppCompatActivity {
         int n = stringList.size();
         if(n == 0)
             textView.append("Data Missing"); // if we have no data display the string
-        if(stringList != null){
-           for(int i = 0; i < n; i++){
-               if(i == n - 1){
-                   textView.append(stringList.get(i));
-               }else {
-                   textView.append(stringList.get(i) + "\n");
-               }
-
-           }
+        for(int i = 0; i < n; i++){
+            if(i == n - 1){
+                textView.append(stringList.get(i));
+            }else {
+                textView.append(stringList.get(i) + "\n");
+            }
 
         }
 
