@@ -1,10 +1,16 @@
 <h1 align="center">Capstone Project Final Stage </h1>
 
 
-![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
+
+
+# Budgeting Buddy App on the App store
+
+[![google-play-badge](https://user-images.githubusercontent.com/11560987/40274558-bf096688-5b9e-11e8-8bb9-56105415a934.png)](https://play.google.com/store/apps/details?id=com.madonasyombua.budgetbuddy)
 
 # Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
+
+![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
 
 Creating and building your own app idea can be both exciting and daunting; ultimately, we want the experience to be rewarding. You'll apply a wealth of different concepts and components that you've learned across the Nanodegree to bring you own app idea to life.
 
