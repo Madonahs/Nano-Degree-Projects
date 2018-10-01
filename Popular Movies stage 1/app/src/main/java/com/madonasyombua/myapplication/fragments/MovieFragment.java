@@ -40,8 +40,6 @@ public class MovieFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public MovieFragment() {
@@ -71,7 +69,7 @@ public class MovieFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             String mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

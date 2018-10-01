@@ -34,7 +34,7 @@ public class MovieHelper {
      * @param date this is the date to be formatted
      * @param format the format
      * @return date
-     * @throws ParseException
+     * @throws ParseException p
      */
     private static Date getDate(String date,String format) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
