@@ -60,7 +60,7 @@ Building a layout and populating its fields from data received as JSON is a comm
 
 <img src="https://user-images.githubusercontent.com/11560987/44217727-c4b3e100-a13d-11e8-8acc-852cd8019cd2.jpg" width="380"/>  <img src="https://user-images.githubusercontent.com/11560987/44217733-c5e50e00-a13d-11e8-8466-a691a13be9ec.jpg" width="380"/> 
 
-Libraries 
+✏️ Prerequisites
 --------- 
 * [Picasso](https://github.com/square/picasso)
 * [ExoPlayer](https://github.com/google/ExoPlayer)
