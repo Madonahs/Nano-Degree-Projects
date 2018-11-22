@@ -70,7 +70,7 @@ Building a layout and populating its fields from data received as JSON is a comm
 * [Logger](https://github.com/orhanobut/logger)
 * [Glide](https://github.com/bumptech/glide)
 * [RXJava](https://github.com/ReactiveX/RxJava)
-* [Java 8+]()
+
 
 
 ## Year Book
