@@ -14,6 +14,7 @@ Budgeting Buddy is a simple App meant to help maintain your monthly and daily bu
 
 ![1024px](https://user-images.githubusercontent.com/11560987/35936884-3214f19a-0c0a-11e8-954d-95fcf159bd31.png)
 
+
 ### POPULAR MOVIES, STAGE 1 and POPULAR MOVIES, STAGE 2
 
 Advanced Android App Development
@@ -72,5 +73,9 @@ Building a layout and populating its fields from data received as JSON is a comm
 * [Java 8+]()
 
 
+## Year Book
+![yearbook_banner_in_progress](https://user-images.githubusercontent.com/11560987/48880287-639f4780-edd5-11e8-96da-c93751145589.jpg)
+
 ## All Projects
 ![projects](https://user-images.githubusercontent.com/11560987/39330794-5bdd1b4c-4968-11e8-9271-631b147ec403.PNG)
+
