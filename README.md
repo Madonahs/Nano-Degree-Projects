@@ -1,4 +1,4 @@
-<h1 align="center">Nano Degree Projects </h1>
+<h1 align="center">Udacity Android Developer Nano Degree Projects </h1>
 
 ## About
  **Intermediate Android Developer Track. Grow with Google Scholarship**
