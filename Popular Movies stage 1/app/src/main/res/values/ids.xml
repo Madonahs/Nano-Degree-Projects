@@ -15,5 +15,5 @@
   * limitations under the License.
   *-->
 <resources>
-    <item name="release" type="id">Release Date</item>
+    <item name="release" type="id"/>
 </resources>
