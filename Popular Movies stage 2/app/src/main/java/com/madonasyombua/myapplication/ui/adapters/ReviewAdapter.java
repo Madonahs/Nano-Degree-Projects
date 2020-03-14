@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.adapters;
+package com.madonasyombua.myapplication.ui.adapters;
 
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.madonasyombua.myapplication.R;
-import com.madonasyombua.myapplication.model.MovieReview;
-import com.madonasyombua.myapplication.model.Review;
+import com.madonasyombua.myapplication.data.model.MovieReview;
+import com.madonasyombua.myapplication.data.model.Review;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

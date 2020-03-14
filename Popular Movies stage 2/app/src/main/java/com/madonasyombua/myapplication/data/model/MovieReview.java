@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.model;
+package com.madonasyombua.myapplication.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -28,16 +28,21 @@ import java.util.List;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Movies implements Parcelable {
+public class MovieReview implements Parcelable {
     @JsonProperty("page")
-    private Integer page;
+    private final int page;
+    @JsonProperty("total_pages")
+    private final int totalPages;
     @JsonProperty("results")
-    private final List<MovieResult> results;
+    private final List<Review> results;
+    @JsonProperty("total_results")
+    private final int totalResults;
 
-    //constructor
-    public Movies() {
+    public MovieReview() {
         this.page = 0;
+        this.totalPages = 0;
         this.results = new ArrayList<>();
+        this.totalResults = 0;
     }
 
     // Parcelable
@@ -48,24 +53,28 @@ public class Movies implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.page);
+        dest.writeInt(this.page);
+        dest.writeInt(this.totalPages);
         dest.writeTypedList(this.results);
+        dest.writeInt(this.totalResults);
     }
 
-    private Movies(Parcel in) {
-        this.page = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.results = in.createTypedArrayList(MovieResult.CREATOR);
+    MovieReview(Parcel in) {
+        this.page = in.readInt();
+        this.totalPages = in.readInt();
+        this.results = in.createTypedArrayList(Review.CREATOR);
+        this.totalResults = in.readInt();
     }
 
-    public static final Creator<Movies> CREATOR = new Creator<Movies>() {
+    public static final Parcelable.Creator<MovieReview> CREATOR = new Parcelable.Creator<MovieReview>() {
         @Override
-        public Movies createFromParcel(Parcel source) {
-            return new Movies(source);
+        public MovieReview createFromParcel(Parcel source) {
+            return new MovieReview(source);
         }
 
         @Override
-        public Movies[] newArray(int size) {
-            return new Movies[size];
+        public MovieReview[] newArray(int size) {
+            return new MovieReview[size];
         }
     };
 
@@ -73,25 +82,24 @@ public class Movies implements Parcelable {
      * get the page
      * @return page
      */
-    public Integer getPage() {
+    public int getPage() {
         return page;
     }
 
     /**
-     * get the results
-     * @return results
+     * all review pages
+     * @return total pages
      */
-    public List<MovieResult> getResults() {
-        return results;
+    public int getTotalPages() {
+        return totalPages;
     }
 
     /**
-     *
-     * @param movies movies
+     * this method is of type list which gets Reviews and returns results
+     * @return results
      */
-    public void appendMovies(Movies movies) {
-        this.page = movies.getPage();
-        this.results.addAll(movies.getResults());
+    public List<Review> getResults() {
+        return results;
     }
 
 

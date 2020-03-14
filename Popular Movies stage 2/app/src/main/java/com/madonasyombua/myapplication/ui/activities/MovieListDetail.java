@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.activities;
+package com.madonasyombua.myapplication.ui.activities;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 
 
 import com.madonasyombua.myapplication.R;
-import com.madonasyombua.myapplication.fragments.MovieFragment;
+import com.madonasyombua.myapplication.ui.fragments.MovieFragment;
 /**
  * @author madona syombua
  *

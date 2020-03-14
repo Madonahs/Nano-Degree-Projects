@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.madonasyombua.myapplication.model;
+package com.madonasyombua.myapplication.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

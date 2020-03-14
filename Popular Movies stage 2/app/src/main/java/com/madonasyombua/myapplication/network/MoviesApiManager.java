@@ -15,12 +15,12 @@
  */
 package com.madonasyombua.myapplication.network;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.madonasyombua.myapplication.interfaces.DBUpdateListener;
-import com.madonasyombua.myapplication.interfaces.DataRequest;
-import com.madonasyombua.myapplication.model.Movie;
-import com.madonasyombua.myapplication.model.Movies;
+import com.madonasyombua.myapplication.data.interfaces.DBUpdateListener;
+import com.madonasyombua.myapplication.data.interfaces.DataRequest;
+import com.madonasyombua.myapplication.data.model.Movie;
+import com.madonasyombua.myapplication.data.model.Movies;
 import com.madonasyombua.myapplication.utils.Constants;
 import com.orhanobut.logger.Logger;
 

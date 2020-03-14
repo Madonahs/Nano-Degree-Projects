@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.interfaces;
+package com.madonasyombua.myapplication.data.interfaces;
 
-import com.madonasyombua.myapplication.model.Movie;
-import com.madonasyombua.myapplication.model.Movies;
+import com.madonasyombua.myapplication.data.model.Movie;
+import com.madonasyombua.myapplication.data.model.Movies;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.activities;
+package com.madonasyombua.myapplication.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -22,15 +22,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,12 +40,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.madonasyombua.myapplication.adapters.FavouriteMoviesAdapter;
-import com.madonasyombua.myapplication.adapters.MoviesAdapter;
-import com.madonasyombua.myapplication.helpers.MovieContract;
-import com.madonasyombua.myapplication.interfaces.DBUpdateListener;
+import com.madonasyombua.myapplication.ui.adapters.FavouriteMoviesAdapter;
+import com.madonasyombua.myapplication.ui.adapters.MoviesAdapter;
+import com.madonasyombua.myapplication.data.MovieContract;
+import com.madonasyombua.myapplication.data.interfaces.DBUpdateListener;
 import com.madonasyombua.myapplication.R;
-import com.madonasyombua.myapplication.model.Movies;
+import com.madonasyombua.myapplication.data.model.Movies;
 import com.madonasyombua.myapplication.network.MoviesApiManager;
 import com.madonasyombua.myapplication.utils.ItemDecoration;
 import com.madonasyombua.myapplication.utils.Network;
