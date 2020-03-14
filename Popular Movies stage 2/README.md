@@ -15,6 +15,7 @@ Welcome back to Popular Movies! In this second and final stage, you’ll add add
 <img src="https://user-images.githubusercontent.com/11560987/41365655-9741984a-6eff-11e8-879d-83311a7d064d.jpg" width="380"/> <img src="https://user-images.githubusercontent.com/11560987/41365587-6216b5ce-6eff-11e8-9fed-c8418aa26bed.jpg" width="380"/> 
 
 ### Copyright
+```
 /*
  * Copyright (C) 2018 Madonah Syombua
  *
@@ -30,3 +31,4 @@ Welcome back to Popular Movies! In this second and final stage, you’ll add add
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+```
