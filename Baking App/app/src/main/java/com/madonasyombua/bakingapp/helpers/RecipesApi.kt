@@ -13,19 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.bakingapp.helpers;
+package com.madonasyombua.bakingapp.helpers
 
-import com.madonasyombua.bakingapp.models.Recipe;
+import com.madonasyombua.bakingapp.models.Recipe
+import retrofit2.Call
+import retrofit2.http.GET
 
-import java.util.List;
-
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-
-interface RecipesApi {
-
-    @GET("topher/2017/May/59121517_baking/baking.json")
-    Call<List<Recipe>> getRecipes();
-
+internal interface RecipesApi {
+    @get:GET("topher/2017/May/59121517_baking/baking.json")
+    val recipes: Call<List<Recipe?>?>?
 }

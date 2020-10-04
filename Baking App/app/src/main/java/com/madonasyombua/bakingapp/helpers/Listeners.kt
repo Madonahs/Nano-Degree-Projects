@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.bakingapp.helpers;
+package com.madonasyombua.bakingapp.helpers
 
 //my listener
-public final class Listeners {
-    public interface OnItemClickListener {
-        void onItemClick(int position);
+class Listeners {
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 }

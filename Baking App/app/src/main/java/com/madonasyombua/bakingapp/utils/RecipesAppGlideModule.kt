@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.bakingapp.helpers;
+package com.madonasyombua.bakingapp.utils
 
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 
-public interface ApiCallback<T> {
-    void onResponse(T result);
-
-    void onCancel();
-}
+@GlideModule
+class RecipesAppGlideModule : AppGlideModule()
