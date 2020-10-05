@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.madonasyombua.bakingapp.R
 import com.madonasyombua.bakingapp.adapters.RecipesAdapter
+import com.madonasyombua.bakingapp.databinding.FragmentRecipesBinding
 import com.madonasyombua.bakingapp.helpers.ApiCallback
 import com.madonasyombua.bakingapp.helpers.Listeners.OnItemClickListener
 import com.madonasyombua.bakingapp.helpers.RecipesApiManager.Companion.instance
@@ -35,22 +37,24 @@ import com.madonasyombua.bakingapp.widget.AppWidgetService
 import com.orhanobut.logger.Logger
 import java.util.*
 
+class RecipeFragment : Fragment(R.layout.fragment_recipes) {
+  //  @BindView(R.id.recipes_recycler_view)
+  //  var recipesRecyclerView: RecyclerView? = null
 
-@Suppress("UNCHECKED_CAST")
-class RecipeFragment : Fragment() {
-    @BindView(R.id.recipes_recycler_view)
-    var recipesRecyclerView: RecyclerView? = null
+   // @BindView(R.id.pull_to_refresh)
+   // var swipeRefreshLayout: SwipeRefreshLayout? = null
 
-    @BindView(R.id.pull_to_refresh)
-    var swipeRefreshLayout: SwipeRefreshLayout? = null
+   // @BindView(R.id.noDataContainer)
 
-    @BindView(R.id.noDataContainer)
+
     var constraintLayout: ConstraintLayout? = null
     private var mListener: OnRecipeClickListener? = null
     private var unbinder: Unbinder? = null
     private var mRecipes: List<Recipe?>? = null
+
+    private var binding: FragmentRecipesBinding? = null
+
     private val networkChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         override fun onReceive(context: Context, intent: Intent) {
             if (mRecipes == null) {
                 loadingRecipe()
@@ -58,18 +62,17 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentRecipesBinding.bind(view)
         // Inflate the layout for this fragment bind view to butter knife
-        val viewRoot = inflater.inflate(R.layout.fragment_recipes, container, false)
-        unbinder = ButterKnife.bind(this, viewRoot)
-        swipeRefreshLayout!!.setOnRefreshListener { loadingRecipe() }
-        constraintLayout!!.visibility = View.VISIBLE
+
+        binding?.pullToRefresh?.setOnRefreshListener { loadingRecipe() }
+        constraintLayout?.visibility = View.VISIBLE
         setupRecyclerView()
         if (savedInstanceState != null && savedInstanceState.containsKey(RECIPES_KEY)) {
             mRecipes = savedInstanceState.getParcelableArrayList(RECIPES_KEY)
-            recipesRecyclerView?.adapter = activity?.applicationContext?.let {
+           binding?.recipesRecyclerView?.adapter = activity?.applicationContext?.let {
                 RecipesAdapter(it, mRecipes as List<Recipe>,
                         object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
@@ -79,7 +82,7 @@ class RecipeFragment : Fragment() {
             }
             dataLoadedTakeCareLayout()
         }
-        return viewRoot
+
     }
 
     override fun onAttach(context: Context) {
@@ -123,33 +126,33 @@ class RecipeFragment : Fragment() {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private fun setupRecyclerView() {
-        recipesRecyclerView?.visibility = View.GONE
-        recipesRecyclerView?.setHasFixedSize(true)
+        binding?.recipesRecyclerView?.visibility = View.GONE
+        binding?.recipesRecyclerView?.setHasFixedSize(true)
         val twoPaneMode = false
         if (twoPaneMode) {
-            recipesRecyclerView?.layoutManager = GridLayoutManager(activity?.applicationContext, 3)
+            binding?.recipesRecyclerView?.layoutManager = GridLayoutManager(activity?.applicationContext, 3)
         } else {
-            recipesRecyclerView?.layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+            binding?.recipesRecyclerView?.layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
         }
-        recipesRecyclerView?.addItemDecoration(SpacingItemDecoration(resources.getDimension(R.dimen.margin_medium).toInt()))
-        recipesRecyclerView?.addOnItemTouchListener(SimpleOnItemTouchListener())
+        binding?.recipesRecyclerView?.addItemDecoration(SpacingItemDecoration(resources.getDimension(R.dimen.margin_medium).toInt()))
+        binding?.recipesRecyclerView?.addOnItemTouchListener(SimpleOnItemTouchListener())
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private fun loadingRecipe() {
         if (activity?.applicationContext?.let { isNetworkAvailable(it) }!!) {
-            swipeRefreshLayout?.isRefreshing = true
-            instance!!.getRecipes(object : ApiCallback<List<Recipe?>?> {
+            binding?.pullToRefresh?.isRefreshing = true
+            instance?.getRecipes(object : ApiCallback<List<Recipe?>?> {
                 override fun onResponse(result: List<Recipe?>?) {
                     if (result != null) {
                         mRecipes = result
-                        recipesRecyclerView?.adapter = RecipesAdapter(activity!!.applicationContext, mRecipes as List<Recipe>, object : OnItemClickListener {
+                        binding?.recipesRecyclerView?.adapter = RecipesAdapter(activity!!.applicationContext, mRecipes as List<Recipe>, object : OnItemClickListener {
                             override fun onItemClick(position: Int) {
                                 mListener?.onRecipeSelected(mRecipes!![position])
                             }
                         })
                         // Set the default recipe for the widget
-                        if (Prefs.loadRecipe(activity!!.applicationContext) == null) {
+                        if (this@RecipeFragment.activity?.applicationContext?.let { Prefs.loadRecipe(it) } == null) {
                             AppWidgetService.updateWidget(activity, mRecipes!![0])
                         }
                     } else {
@@ -169,8 +172,8 @@ class RecipeFragment : Fragment() {
 
     private fun dataLoadedTakeCareLayout() {
         val loaded = mRecipes != null && mRecipes?.size!! > 0
-        swipeRefreshLayout?.isRefreshing = false
-        recipesRecyclerView?.visibility = if (loaded) View.VISIBLE else View.GONE
+      binding?.pullToRefresh?.isRefreshing = false
+        binding?.recipesRecyclerView?.visibility = if (loaded) View.VISIBLE else View.GONE
         constraintLayout?.visibility = if (loaded) View.GONE else View.VISIBLE
     }
 
@@ -195,9 +198,11 @@ class RecipeFragment : Fragment() {
          * @param context context
          * @return connection
          */
+        @Suppress("DEPRECATION")
         fun isNetworkAvailable(context: Context): Boolean {
             val cm = (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
             return cm.activeNetworkInfo != null && cm.activeNetworkInfo?.isConnected!!
         }
     }
+    
 }

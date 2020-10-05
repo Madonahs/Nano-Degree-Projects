@@ -70,4 +70,6 @@ class MainActivity : FragmentActivity(), RecipeFragment.OnRecipeClickListener {
     companion object {
         private val TAG = MainActivity::class.java.name
     }
+
+
 }
