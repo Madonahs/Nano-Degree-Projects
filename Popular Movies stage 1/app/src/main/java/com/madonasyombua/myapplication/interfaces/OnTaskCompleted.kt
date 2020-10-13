@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.interfaces;
+package com.madonasyombua.myapplication.interfaces
 
-import com.madonasyombua.myapplication.model.Movie;
+import com.madonasyombua.myapplication.model.Movie
 
 /**
  * @author madon
-  */
-
-public interface OnTaskCompleted {
-    void onFetchMovie(Movie [] movies);
+ */
+interface OnTaskCompleted {
+    fun onFetchMovie(movies: Array<Movie?>?)
 }

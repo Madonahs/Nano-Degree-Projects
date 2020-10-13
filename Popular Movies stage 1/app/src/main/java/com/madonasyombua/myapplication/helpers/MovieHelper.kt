@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.madonasyombua.myapplication.helpers;
+package com.madonasyombua.myapplication.helpers
 
-
-import android.content.Context;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import android.content.Context
+import android.text.format.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @author madon
- *
  */
-public class MovieHelper {
-//this class will help me in the date conversion
+object MovieHelper {
+    //this class will help me in the date conversion
     /**
      *
      * @param date this is the date to be formatted
@@ -36,11 +33,10 @@ public class MovieHelper {
      * @return date
      * @throws ParseException p
      */
-    private static Date getDate(String date,String format) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-
-        return simpleDateFormat.parse(date);
-
+    @Throws(ParseException::class)
+    private fun getDate(date: String, format: String): Date {
+        val simpleDateFormat = SimpleDateFormat(format)
+        return simpleDateFormat.parse(date)
     }
 
     /**
@@ -51,11 +47,10 @@ public class MovieHelper {
      * @return convert date to a string
      * @throws ParseException
      */
-    public static String LocalizedDate(Context context,String date,String format) throws ParseException {
-
-        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-
-        return dateFormat.format(getDate(date, format));
+    @JvmStatic
+    @Throws(ParseException::class)
+    fun LocalizedDate(context: Context?, date: String, format: String): String {
+        val dateFormat = DateFormat.getDateFormat(context)
+        return dateFormat.format(getDate(date, format))
     }
-
 }
